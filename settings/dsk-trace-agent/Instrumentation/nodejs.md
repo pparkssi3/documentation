@@ -1,4 +1,4 @@
-`# Node.js
+# Node.js
 
 이 가이드에서는 Node.js 애플리케이션을 추적하기 위해 opentelemetry-js를 사용하는 방법을 설명합니다.
 

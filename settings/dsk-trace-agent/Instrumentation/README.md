@@ -10,6 +10,7 @@ Datasaker는 opentelemetry를 통한 분산 추적을 지원합니다. 분산 �
 
 * [Java](./java.md)
 * [Node.js](./nodejs.md)
+* [Python](./python.md)
 
 > Tip: opentelemtry는 다양한 언어와 프레임워크를 지원합니다. 자세한 내용은 [opentelemetry 문서](https://opentelemetry.io/docs/instrumentation/)를 참고하세요.
 
