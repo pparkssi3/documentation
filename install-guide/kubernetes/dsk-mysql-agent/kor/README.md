@@ -1,11 +1,11 @@
-# 쿠버네티스 환경에서 데이터세이커 mysql agent 설치하기
-mysql agent는 데이터세이커에서 mysql 정보를 수집하는 agent입니다.
+# 쿠버네티스 환경에서 DataSaker Mysql agent 설치하기
+Mysql agent는 DataSaker에서 mysql 정보를 수집하는 agent입니다.
 
-## 데이터세이커를 설치하셨나요?
-현재 Kubernetes 환경에 **데이터세이커**가 설치되어 있지 않다면 **데이터세이커** 설치를 먼저 진행하여 주시기 바랍니다. [데이터세이커 설치하기](../../README.md)
+## DataSaker를 설치하셨나요?
+현재 Kubernetes 환경에 `DataSaker`가 설치되어 있지 않다면 `DataSaker` 설치를 먼저 진행하여 주시기 바랍니다. [DataSaker 설치하기](../../README.md)
 
-# mysql agent 설치하기
-## 1. mysql agent 설정값 등록
+# Mysql agent 설치하기
+## 1. Mysql agent 설정값 등록
 ```shell
 cat << EOF >> ~/datasaker/config.yaml
 
@@ -42,8 +42,8 @@ mysqlAgents:
 EOF
 ```
 
-### mysql agent 설정 값 
-mysql agent의 설정 값의 의미와 default값은 다음과 같습니다. 사용자마다 에이전트 설정에 대해 다른 요구사항이 있습니다. 따라서 에이전트 설정을 사용자 설정에 맞게 조정해야 합니다. 최적의 결과를 위해 에이전트 설정을 조정하세요.
+### Mysql agent 설정 값 
+Mysql agent의 설정 값의 의미와 default값은 다음과 같습니다. 사용자마다 에이전트 설정에 대해 다른 요구사항이 있습니다. 따라서 에이전트 설정을 사용자 설정에 맞게 조정해야 합니다. 최적의 결과를 위해 에이전트 설정을 조정하세요.
 "~/datasaker/config.yaml"에서 해당 값을 추가하거나 수정하세요.
 ```yaml
 mysqlAgents:
@@ -66,7 +66,7 @@ mysqlAgents:
         scrape_interval: 5s                 # explain 수집 주기를 설정합니다.
         scrape_timeout: 5s                  # explain 요청 시 타임아웃을 설정합니다.
         executor_number: 10                 # explain worker 개수
-        sender_number: 10                   # 데이터세이커에 전송하는 worker의 개수 
+        sender_number: 10                   # DataSaker에 전송하는 worker의 개수 
         slow_query_standard: 5s             # slow query의 기준이 되는 시간
       resources:                            # agent의 resource를 설정합니다. 너무 작게할 경우 정상동작을 못할 수 있습니다.
         requests:
@@ -77,14 +77,14 @@ mysqlAgents:
           memory: 1000Mi
 ```
 
-## 2. mysql agent 동작
+## 2. Mysql agent 동작
 ```shell
 helm upgrade datasaker ~/datasaker/agent-helm -n datasaker \
   -f ~/datasaker/config.yaml
 ```
 
 ## exporterArgs value
-**데이터세이커 MySQL 에이전트**의 인자 목록입니다.
+`DataSaker MySQL 에이전트`의 인자 목록입니다.
 
 | Argument                                                  | MySQL Version | Description                                                                           |
 |-----------------------------------------------------------|---------------|---------------------------------------------------------------------------------------|
