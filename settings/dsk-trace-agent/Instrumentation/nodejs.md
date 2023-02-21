@@ -66,7 +66,7 @@ process.on('SIGTERM', () => {
 })
 ```
 
-디버그 로그를 출려갛고 싶다면 아래 코드를 추가해주세요.
+디버그 로그를 출력하고 싶다면 아래 코드를 추가해주세요.
 
 ``` javascript
 const { diag, DiagConsoleLogger, DiagLogLevel } = require('@opentelemetry/api');
