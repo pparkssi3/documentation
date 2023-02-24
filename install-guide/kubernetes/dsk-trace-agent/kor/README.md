@@ -34,6 +34,8 @@ traceAgent:
       memory: 1000Mi
   nodeSelector: {}                  # (option) agent가 동작할 node를 설정합니다.
   affinity: {}                      # (option) agent가 동작할 node를 설정합니다.
+  collector:                        
+    samplingRate: 10                # (option) Trace 데이터를 수집할 확률을 설정 합니다. (0 < sampleRate <= 100)
 ```
 
 ## 2. Trace agent 동작
