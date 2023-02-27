@@ -10,9 +10,9 @@ example API Key : VAR_GLOBAL_APIKEY=1234567890abcdef1234567890abcdef
 ```bash
 DSK_GLOBAL_APIKEY=${VAR_GLOBAL_APIKEY}
 
-curl -fsSL -o installer.sh https://nextcloud.exem-oss.org/s/qPwDBm8QRLf7PGA/download/dsk-mysql-agent-install.sh
+curl -fsSL -o installer.sh https://dsk-agent-s3.s3.ap-northeast-2.amazonaws.com/dsk-agent-s3/public/install.sh
 chmod 700 installer.sh
-sudo ./installer.sh
+sudo ./installer.sh dsk-postgres-agent
 
 sudo DSK_GLOBAL_APIKEY=${DSK_GLOBAL_APIKEY} bash -c '/usr/bin/dsk-postgres-agent init "'${DSK_GLOBAL_APIKEY}'" && sudo /usr/bin/dsk-postgres-agent start'
 ```

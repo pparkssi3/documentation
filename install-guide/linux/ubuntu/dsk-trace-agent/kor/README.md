@@ -19,10 +19,27 @@ curl -fsSL -o installer.sh https://nextcloud.exem-oss.org/s/BTa8BGyckeCHKkC/down
 chmod 700 installer.sh
 sudo ./installer.sh
 
-sudo DSK_GLOBAL_APIKEY=${DSK_GLOBAL_APIKEY} bash -c '/usr/bin/dsk-trace-agent init "'${DSK_GLOBAL_APIKEY}'" && sudo /usr/bin/dsk-trace-agent start'
+sudo DSK_GLOBAL_APIKEY=${DSK_GLOBAL_APIKEY} bash -c '/usr/bin/dsk-trace-agent init "'${DSK_GLOBAL_APIKEY}'"'
 ```
 
-## 2. 패키지 실행 상태 확인
+## 2. Trace agent 설정
+``` bash
+vi /etc/datasaker/dsk-trace-agent/agent-config.yaml
+```
+
+``` yaml
+# Trace agent 설정 파일
+agent:
+  agent_name: "your_agent_name_what_you_want" # default=trace-agent
+  cluster_id: "test-cluster-id"               # default=unknown_cluster
+```
+
+## 3. 패키지 실행
+```bash
+sudo /usr/bin/dsk-trace-agent start
+```
+
+## 4. 패키지 실행 상태 확인
 ```bash
 $ sudo dsk-trace-agents status
 Agent is running
