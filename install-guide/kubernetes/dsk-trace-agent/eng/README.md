@@ -38,11 +38,14 @@ traceAgent:
     limits:
       cpu: 1000m
       memory: 1000Mi
+```
+<!--
   nodeSelector: {}                  # (option) set nodeSelector if you want to deploy agent on specific node.
   affinity: {}                      # (option) set affinity if you want to deploy agent on specific node.
   collector:
     samplingRate: 10                # (option) set Trace data sampling rate. (0 < sampleRate <= 100)
 ```
+-->
 
 ## 2. Run Trace agent
 
@@ -62,9 +65,11 @@ helm upgrade datasaker ~/datasaker/agent-helm -n datasaker \
 | 4317  | TCP      | otlp-grpc      |
 | 4318  | TCP      | otlp-http      |
 
+<!--
 # Caution
 
 > By default, Trace agent is deployed as a daemonset. \
 > Therefore, Trace agent is installed on all nodes. \
 > If you want to install Trace agent only on specific nodes, set affinity or nodeSelector for the node. \
 > However, opentelemetry-instrumented applications must be installed on the same node as the Trace agent.
+-->
