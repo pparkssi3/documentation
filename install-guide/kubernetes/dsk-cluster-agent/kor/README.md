@@ -4,8 +4,8 @@
 또한, 쿠버네티스 API 서버와 연동하여 클러스터 노드 및 리소스의 생성 이벤트를 실시간으로 감지하고, 문제 발생 시 적절한 대응을 할 수 있습니다.
 수집된 데이터를 분석하여 클러스터의 성능 개선 및 안정성 강화에 기여할 수 있습니다. 고객의 요구사항에 맞게 에이전트 설정을 조정하여 최적의 결과를 제공해 드립니다.
 
-## DataSaker를 설치하셨나요?
-현재 Kubernetes 환경에 `DataSaker`가 설치되어 있지 않다면 `DataSaker` 설치를 먼저 진행하여 주시기 바랍니다. [DataSaker 설치하기](../../README.md)
+# DataSaker를 설치하셨나요?
+현재 Kubernetes 환경에 `DataSaker`가 설치되어 있지 않다면 `DataSaker` 설치를 먼저 진행하여 주시기 바랍니다. [DataSaker 설치하기](https://github.com/datasaker/documentation/tree/main/install-guide/kubernetes)
 
 # Cluster agent 설치하기
 ## 1. Cluster agent 설정 값 등록
