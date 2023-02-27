@@ -1,5 +1,8 @@
 # 쿠버네티스 환경에서 DataSaker Base agent 설치하기
-`Base agent`는 `node agent`와 `container agent`로 구성되어 있습니다. `node agent`는 agent가 배포된 노드의 상태 값 및 자원 사용량에 대한 정보를 수집하며, `container agent`는 agent가 배포된 노드의 컨테이너 정보를 수집합니다.
+`Base agent`는 서버에서 발생하는 다양한 정보를 실시간으로 수집합니다. 
+예를 들어, 메모리, CPU 사용량 등 서버의 성능 지표, 네트워크 트래픽, Container 정보 등 다양한 정보를 수집할 수 있습니다. 
+이를 통해 고객은 서버의 상태를 실시간으로 모니터링할 수 있으며, 이를 기반으로 서버의 성능을 최적화하고 안정성을 높일 수 있습니다. 
+고객의 요구사항에 맞게 에이전트 설정을 조정하여 최적의 결과를 제공해 드립니다.
 
 ## DataSaker를 설치하셨나요?
 현재 Kubernetes 환경에 `DataSaker`가 설치되어 있지 않다면 `DataSaker` 설치를 먼저 진행하여 주시기 바랍니다. [DataSaker 설치하기](../../README.md)

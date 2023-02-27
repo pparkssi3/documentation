@@ -1,5 +1,8 @@
 # 쿠버네티스 환경에서 DataSaker Trace agent 설치하기
-Trace agent는 `DataSaker`에서 trace 정보를 수집하는 agent입니다.
+`Trace agent`는 opentelemetry와 Jaeger와 같은 오픈소스 분산 추적 시스템과 연동하여, 애플리케이션의 분산 추적 데이터를 수집합니다. 
+이를 통해 애플리케이션 내부의 다양한 서비스 간의 통신을 추적하고, 성능 병목 현상을 식별하여 최적화할 수 있습니다. 
+수집된 데이터는 빠르게 처리되어 실시간으로 모니터링 및 분석이 가능합니다. 
+고객의 요구사항에 맞게 "Trace Agent" 설정을 조정하여 최적의 결과를 제공해 드립니다.
 
 ## DataSaker를 설치하셨나요?
 현재 Kubernetes 환경에 `DataSaker`가 설치되어 있지 않다면 `DataSaker` 설치를 먼저 진행하여 주시기 바랍니다. [DataSaker 설치하기](../../README.md)
