@@ -72,9 +72,9 @@ helm upgrade datasaker ~/datasaker/agent-helm -n datasaker \
   -f ~/datasaker/config.yaml
 ```
 
-## 3. Log agent 사용 방법
+# Log agent 사용 방법
 
-### 1. 반드시 하나 이상의 로그 수집 경로(`path`)를 입력하십시오.
+## 1. 반드시 하나 이상의 로그 수집 경로(`path`)를 입력하십시오.
 
 로그 수집 경로를 작성하지 않을 경우, `Log agent`가 정상적으로 동작하지 않을 수 있습니다.
 ```yaml
@@ -83,14 +83,14 @@ collect:
       - /var/log/containers/postgres.log
 ```
 
-### 2. 키워드(`keywords`) 설정에 유의하십시오.
+## 2. 키워드(`keywords`) 설정에 유의하십시오.
 
 `keywords` 설정에 등록한 문자열이 포함된 로그만 수집합니다. 하나 이상의 `keywords`를 설정할 경우 한 개의 `keywords`라도 포함되어 있으면 로그를 수집합니다.
 ```yaml
 keywords: []                             # 지정된 키워드가 포환된 로그만 수집하도록 설정합니다.
 ```
 
-### 3. 로그 수집 대상의 `type`이 `database`인 경우 `address` 설정을 권장합니다.
+## 3. 로그 수집 대상의 `type`이 `database`인 경우 `address` 설정을 권장합니다.
 
 해당 설정을 통해 관련 database agent 에서 로그 정보를 맵핑하여 보여드립니다. `address` 설정을 하지 않으면 해당 기능을 사용하지 못할 수 있습니다.
 ```yaml
