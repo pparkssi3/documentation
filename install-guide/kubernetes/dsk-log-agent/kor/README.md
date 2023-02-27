@@ -83,6 +83,8 @@ collect:
       - /var/log/containers/postgres.log
 ```
 
+**[주의]** 다음과 같이 특정 경로의 모든 로그를 수집하도록 설정할 경우 `Log agent`에 많은 부하가 생실 수 있습니다. (`/var/log/containers/*`)
+
 ## 2. 키워드(`keywords`) 설정에 유의하십시오.
 
 `keywords` 설정에 등록한 문자열이 포함된 로그만 수집합니다. 하나 이상의 `keywords`를 설정할 경우 한 개의 `keywords`라도 포함되어 있으면 로그를 수집합니다.

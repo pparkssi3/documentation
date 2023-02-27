@@ -1,21 +1,18 @@
 # Ubuntu 환경에 DataSaker Log agent 설치하기
-`Log agent`는 서버에서 생성되는 로그를 실시간으로 수집합니다. 
-이를 통해 고객은 서버의 상태를 실시간으로 모니터링할 수 있으며, 이를 기반으로 서버의 문제를 예방하고 대처할 수 있습니다. 
-또한, 로그 데이터를 분석하여 보안, 성능, 비즈니스 분석 등 다양한 목적으로 활용할 수 있습니다. 
+`Log agent`는 다양한 환경에서 시스템 또는 애플리케이션에서 생성되는 로그 데이터를 거의 실시간으로 수집하고, 처리 및 전송하는 에이전트입니다.
+`Log agent`를 통해 여러 대의 서버에서 생성되는 로그 데이터를 중앙 집중적으로 관리하고 분석하기 위해 사용할 수 있습니다.
+그에 따라 사용자는 시스템 또는 애플리케이션에서 발생하는 문제를 빠르게 감지하고 대응할 수 있습니다.
+또한, 로그 데이터를 분석하여 보안, 성능, 비즈니스 분석 등 다양한 목적으로 활용할 수 있습니다.
 고객의 요구사항에 맞게 에이전트 설정을 조정하여 최적의 결과를 제공해 드립니다.
 
-# DataSaker 설정파일을 생성하셨나요?
-현재 Ubuntu 환경에서는 `DataSaker` 에이전트를 설치하기 위해서는 기본 설정 파일이 생성되어 있어야 합니다. 만약 기본 설정 파일을 생성하지 않았다면 생성하여 주시기 바랍니다. [DataSaker 설정하기](https://github.com/datasaker/documentation/tree/main/install-guide/linux/ubuntu)
-## Coming Soon..
+## DataSaker 설정파일을 생성하셨나요?
+현재 Ubuntu 환경에서는 `DataSaker` 에이전트를 설치하기 위해서는 기본 설정 파일이 생성되어 있어야 합니다. 만약 기본 설정 파일을 생성하지 않았다면 생성하여 주시기 바랍니다. [DataSaker 설정하기](../../README.md)
+
+# Log agent 설치하기
+
+Coming Soon...
 
 [//]: # ()
-[//]: # (## DataSaker 설정파일을 생성하셨나요?)
-
-[//]: # (현재 Ubuntu 환경에서는 `DataSaker` 에이전트를 설치하기 위해서는 기본 설정 파일이 생성되어 있어야 합니다. 만약 기본 설정 파일을 생성하지 않았다면 생성하여 주시기 바랍니다. [DataSaker 설정하기]&#40;../../README.md&#41;)
-
-[//]: # ()
-[//]: # (# Log agent 설치하기)
-
 [//]: # (## 1. agent-config 설정)
 
 [//]: # (`/etc/datasaker/dsk-log-agent/agent-config.yml` 경로에 agent-config 파일을 다음과 같이 생성합니다. &#40;*&#41;가 붙은 곳은 반듯이 입력해야 됩니다.)
@@ -30,11 +27,11 @@
 
 [//]: # (    cluster_id:         # 클러스터 정보)
 
-[//]: # (  environment:          # 로그 수집 환경 [kubernetes, docker, etc])
+[//]: # (  environment:          # 로그 수집 환경 [kubernetes | docker | etc] &#40;기본 설정값: etc&#41;)
 
 [//]: # (  collect:)
 
-[//]: # (    - paths: []         # &#40;*&#41;로그 수집 경로)
+[//]: # (    - paths: []         # &#40;*&#41; 로그 수집 경로)
 
 [//]: # (      exclude_paths: [] # 로그 수집 경로 중 제외시키고자 하는 로그 경로)
 
@@ -44,17 +41,13 @@
 
 [//]: # (      service:)
 
-[//]: # (        - name:         # 서비스 이름  )
+[//]: # (        name:           # 서비스 이름  &#40;기본 설정값: default&#41;)
 
-[//]: # (        - kind:         # 서비스 종류)
+[//]: # (        category:       # 서비스 분류  [app, database, syslog, etc] &#40;기본 설정값: etc&#41;)
 
-[//]: # (      source:)
+[//]: # (        type:           # 서비스 소스 타입 [postgres, mysql, java] &#40;기본 설정값: etc&#41;)
 
-[//]: # (        - type:         # 로그 소스 타입 [app, database, syslog, etc])
-
-[//]: # (        - kind:         # 로그 소스 종류 [postgres, mysql, java, python, go])
-
-[//]: # (        - address:      # 사용자 설정 - DB host 및 port 정보)
+[//]: # (        address:        # 사용자 설정 - 데이터베이스 host 및 port 정보 &#40;type이 database 인 경우 작성&#41;)
 
 [//]: # (```)
 
@@ -74,11 +67,11 @@
 [//]: # (DSK_GLOBAL_APIKEY=${VAR_GLOBAL_APIKEY})
 
 [//]: # ()
-[//]: # (curl -fsSL -o installer.sh https://nextcloud.exem-oss.org/s/qPwDBm8QRLf7PGA/download/dsk-log-agent-install.sh)
+[//]: # (curl -fsSL -o installer.sh https://dsk-agent-s3.s3.ap-northeast-2.amazonaws.com/dsk-agent-s3/public/install.sh)
 
 [//]: # (chmod 700 installer.sh)
 
-[//]: # (sudo ./installer.sh)
+[//]: # (sudo ./installer.sh dsk-log-agent)
 
 [//]: # ()
 [//]: # (sudo DSK_GLOBAL_APIKEY=${DSK_GLOBAL_APIKEY} bash -c '/usr/bin/dsk-log-agent init "'${DSK_GLOBAL_APIKEY}'" && sudo /usr/bin/dsk-log-agent start')
@@ -98,7 +91,7 @@
 
 [//]: # (> 1. 로그 수집을 위해 패키지 실행 전 에이전트 설정 파일을 구성해야 한다&#40;`global-config.yml`, `config.conf`&#41;.)
 
-[//]: # (> 2. 로그 에에전트 기본 포트가 이미 설정되어 있는 경우 `FLUENTD_RELOAD_PORT`, `FLUENTD_HEALTHCHECK_PORT` 환경변수를 설정하여 변경할 수 있다.)
+[//]: # (> 2. 로그 에에전트는 기본적으로 fluentd를 사용하여 로그를 수집합니다. 이미 사용 중인 fluentd가 있는 경우 `DSK_FLUENTD_CMD` 환경변수를 설정하여 변경할 수 있습니다. 환경변수를 사용하여 실행할 경우 다음과 같이 실행하십시오. &#40;`sudo -E dsk-log-agent start`&#41;)
 
 [//]: # ()
 [//]: # (## 4. 패키지 실행 상태 확인)
@@ -106,8 +99,6 @@
 [//]: # (```bash)
 
 [//]: # ($ sudo dsk-log-agent status)
-
-[//]: # (fluentd is running)
 
 [//]: # (Agent is running)
 
