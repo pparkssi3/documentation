@@ -32,6 +32,7 @@ mysqlAgents:
       explain:
         scrape_interval: 5s
         scrape_timeout: 5s
+        slow_query_standard: 5s
         executor_number: 10
         sender_number: 10
         activity_query_buffer: 50
@@ -69,6 +70,7 @@ mysqlAgents:
       explain:
         scrape_interval: 5s                 # explain 수집 주기를 설정합니다.
         scrape_timeout: 5s                  # explain 요청 시 타임아웃을 설정합니다.
+        slow_query_standard: 5s             # slow query 기준을 설정합니다.
         executor_number: 10                 # explain worker 개수
         sender_number: 10                   # DataSaker에 전송하는 worker의 개수 
         slow_query_standard: 5s             # slow query의 기준이 되는 시간

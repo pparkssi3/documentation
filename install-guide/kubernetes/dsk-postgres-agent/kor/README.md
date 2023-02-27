@@ -32,6 +32,7 @@ postgresAgents:
       explain:
         scrape_interval: 5s
         scrape_timeout: 5s
+        slow_query_standard: 5s
         executor_number: 10
         sender_number: 10
         activity_query_buffer: 50
@@ -68,6 +69,7 @@ postgresAgents:
       explain: 
         scrape_interval: 5s             # explain 수집 주기를 설정합니다.
         scrape_timeout: 5s              # explain 요청 시 타임아웃을 설정합니다.
+        slow_query_standard: 5s         # slow query 기준을 설정합니다.
         executor_number: 10             # explain worker 개수
         sender_number: 10               # DataSaker에 전송하는 worker의 개수 
       resources:                        # agent의 resource를 설정합니다. 너무 작게할 경우 정상동작을 못할 수 있습니다.
@@ -79,7 +81,7 @@ postgresAgents:
           memory: 1000Mi
 ```
 
-## 2. elasticsearch agent 동작
+## 2. Postgres agent 동작
 ```shell
 helm upgrade datasaker ~/datasaker/agent-helm -n datasaker \
   -f ~/datasaker/config.yaml
