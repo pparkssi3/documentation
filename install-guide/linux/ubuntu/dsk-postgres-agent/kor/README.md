@@ -9,7 +9,17 @@
 현재 Ubuntu 환경에서는 `DataSaker` 에이전트를 설치하기 위해서는 기본 설정 파일이 생성되어 있어야 합니다. 만약 기본 설정 파일을 생성하지 않았다면 생성하여 주시기 바랍니다. [DataSaker 설정하기](https://github.com/datasaker/documentation/tree/main/install-guide/linux/ubuntu)
 
 # Postgres agent 설치하기
-## 1. agent-config 설정
+
+## 1. 패키지 설치
+```bash
+DSK_GLOBAL_APIKEY=${VAR_GLOBAL_APIKEY}
+curl -fsSL -o installer.sh https://dsk-agent-s3.s3.ap-northeast-2.amazonaws.com/dsk-agent-s3/public/install.sh
+chmod 700 installer.sh
+sudo ./installer.sh dsk-postgres-agent
+
+sudo DSK_GLOBAL_APIKEY=${DSK_GLOBAL_APIKEY} bash -c '/usr/bin/dsk-postgres-agent init "'${DSK_GLOBAL_APIKEY}'"'
+```
+## 2. agent-config 설정
 `/etc/datasaker/dsk-postgres-agent/agent-config.yml`에 내용을 기입합니다.
 ```yaml
 agent:
@@ -30,41 +40,33 @@ agent:
         filtering_configs:
           rule: drop
 ```
-
-## 2. 패키지 설치
-```bash
-> DSK_GLOBAL_APIKEY=${VAR_GLOBAL_APIKEY}
-> curl -fsSL -o installer.sh https://dsk-agent-s3.s3.ap-northeast-2.amazonaws.com/dsk-agent-s3/public/install.sh
-> chmod 700 installer.sh
-> sudo ./installer.sh dsk-postgres-agent
-
-> sudo DSK_GLOBAL_APIKEY=${DSK_GLOBAL_APIKEY} bash -c '/usr/bin/dsk-postgres-agent init "'${DSK_GLOBAL_APIKEY}'" && sudo /usr/bin/dsk-postgres-agent start'
+환경변수를 설정합니다.
+```shell
+export DATA_SOURCE_USER=<your_postgres_account>
+export DATA_SOURCE_PASS=<your_postgres_account_pass>
+export DATA_SOURCE_URI=<DB_ADDRESS:DB_PORT/DB_NAME?sslmode=disable>
 ```
 ## 3. 패키지 실행
-```bash
-$ sudo -E dsk-postgres-agent start
-Agent is running
+```shell
+systemctl enable dsk-postgres-agent --now
 ```
 
 ## 4. 패키지 실행 상태 확인
-### Running
-```bash
-$ sudo dsk-postgres-agent status
-Agent is running
+```shell
+systemctl status dsk-postgres-agent
 ```
-### Not Running
-```bash
-$ sudo dsk-postgres-agent status
-Agent is not running
+또는
+```shell
+service dsk-postgres-agent
 ```
 
 # Postgres agent 제거하기
 ## 1. 패키지 중단
-```bash
-$ sudo dsk-postgres-agent stop
+```shell
+systemctl stop dsk-postgres-agent
 ```
 
 ## 2. 패키지 제거
-```bash
+```shell
 sudo apt remove dsk-postgres-agent
 ```
