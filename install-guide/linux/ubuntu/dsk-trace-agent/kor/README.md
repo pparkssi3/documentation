@@ -12,20 +12,18 @@
 <!-- 
 example API Key : VAR_GLOBAL_APIKEY=1234567890abcdef1234567890abcdef
  -->
-```bash
-DSK_GLOBAL_APIKEY=${VAR_GLOBAL_APIKEY}
-
+``` shell
 curl -fsSL -o installer.sh https://dsk-agent-s3.s3.ap-northeast-2.amazonaws.com/dsk-agent-s3/public/install.sh
 chmod 700 installer.sh
 sudo ./installer.sh dsk-trace-agent
-
-sudo DSK_GLOBAL_APIKEY=${DSK_GLOBAL_APIKEY} bash -c '/usr/bin/dsk-trace-agent init "'${DSK_GLOBAL_APIKEY}'"'
 ```
 
 ## 2. Trace agent 설정
-``` bash
+``` shell
 vi /etc/datasaker/dsk-trace-agent/agent-config.yaml
 ```
+
+필요에 따라 다음 내용을 수정합니다.
 
 ``` yaml
 # Trace agent 설정 파일
@@ -35,12 +33,12 @@ agent:
 ```
 
 ## 3. 패키지 실행
-```bash
+```shell
 sudo /usr/bin/dsk-trace-agent start
 ```
 
 ## 4. 패키지 실행 상태 확인
-```bash
+```shell
 $ sudo dsk-trace-agents status
 Agent is running
 Exporter is running
@@ -48,11 +46,11 @@ Exporter is running
 
 # Trace agent 제거하기
 ## 1. 패키지 중단
-```bash
+```shell
 sudo dsk-trace-agent stop
 ```
 
 ## 2. 패키지 제거
-```bash
+```shell
 sudo apt-get remove dsk-trace-agent
 ```

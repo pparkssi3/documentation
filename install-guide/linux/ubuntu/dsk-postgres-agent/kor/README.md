@@ -10,14 +10,12 @@
 # Postgres agent 설치하기
 
 ## 1. 패키지 설치
-```shell
-DSK_GLOBAL_APIKEY=${VAR_GLOBAL_APIKEY}
+```bash
 curl -fsSL -o installer.sh https://dsk-agent-s3.s3.ap-northeast-2.amazonaws.com/dsk-agent-s3/public/install.sh
 chmod 700 installer.sh
 sudo ./installer.sh dsk-postgres-agent
-
-sudo DSK_GLOBAL_APIKEY=${DSK_GLOBAL_APIKEY} bash -c '/usr/bin/dsk-postgres-agent init "'${DSK_GLOBAL_APIKEY}'"'
 ```
+
 ## 2. agent-config 설정
 `/etc/datasaker/dsk-postgres-agent/agent-config.yml`에 내용을 기입합니다.
 ```yaml
@@ -42,6 +40,7 @@ agent:
         filtering_configs:
           rule: drop
 ```
+
 ## 3. 패키지 실행
 ```shell
 systemctl enable dsk-postgres-agent --now
@@ -57,6 +56,7 @@ service dsk-postgres-agent
 ```
 
 # Postgres agent 제거하기
+
 ## 1. 패키지 중단
 ```shell
 systemctl stop dsk-postgres-agent
