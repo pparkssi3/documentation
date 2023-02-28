@@ -24,8 +24,8 @@ sudo DSK_GLOBAL_APIKEY=${DSK_GLOBAL_APIKEY} bash -c '/usr/bin/dsk-postgres-agent
 ```yaml
 agent:
   metadata:
-  # agent_name: my-dsk-postgres-agent
-  # cluster_id: my-cluster
+    agent_name: my-dsk-postgres-agent
+    cluster_id: my-cluster
   option:
     exporter_config:
       command: "/usr/bin/dsk-postgres-exporter"
@@ -42,10 +42,12 @@ agent:
 ```
 환경변수를 설정합니다.
 ```shell
-export DATA_SOURCE_USER=<your_postgres_account>
-export DATA_SOURCE_PASS=<your_postgres_account_pass>
-export DATA_SOURCE_URI=<DB_ADDRESS:DB_PORT/DB_NAME?sslmode=disable>
+systemctl set-environment DATA_SOURCE_USER=<your_postgres_account>
+systemctl set-environment DATA_SOURCE_PASS=<your_postgres_account_pass>
+systemctl set-environment DATA_SOURCE_URI=<DB_ADDRESS:DB_PORT/DB_NAME?sslmode=disable>
 ```
+`DATA_SOURCE_USER`는 모니터링 하려는 데이터베이스가 보유하고 있는 모니터링 계정 명입니다.\
+`DATA_SOURCE_PASS`는 
 ## 3. 패키지 실행
 ```shell
 systemctl enable dsk-postgres-agent --now
