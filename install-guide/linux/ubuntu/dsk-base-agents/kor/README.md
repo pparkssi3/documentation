@@ -14,13 +14,9 @@
 example API Key : VAR_GLOBAL_APIKEY=1234567890abcdef1234567890abcdef
  -->
 ```bash
-DSK_GLOBAL_APIKEY=${VAR_GLOBAL_APIKEY}
-
 curl -fsSL -o installer.sh https://dsk-agent-s3.s3.ap-northeast-2.amazonaws.com/dsk-agent-s3/public/install.sh
 chmod 700 installer.sh
 sudo ./installer.sh dsk-node-agent
-
-sudo DSK_GLOBAL_APIKEY=${DSK_GLOBAL_APIKEY} bash -c '/usr/bin/dsk-node-agent init "'${DSK_GLOBAL_APIKEY}'" && systemctl enable dsk-node-agent --now'
 ```
 
 ## 2. 패키지 실행 상태 확인

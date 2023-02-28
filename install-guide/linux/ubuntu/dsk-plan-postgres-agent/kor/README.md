@@ -35,13 +35,9 @@
 
 ## 2. 패키지 설치
 ```bash
-> DSK_GLOBAL_APIKEY=${VAR_GLOBAL_APIKEY}
-
-> curl -fsSL -o installer.sh https://dsk-agent-s3.s3.ap-northeast-2.amazonaws.com/dsk-agent-s3/public/install.sh
-> chmod 700 installer.sh
-> sudo ./installer.sh dsk-plan-postgres-agent
-
-> dsk-plan-postgres-agent --help
+curl -fsSL -o installer.sh https://dsk-agent-s3.s3.ap-northeast-2.amazonaws.com/dsk-agent-s3/public/install.sh
+chmod 700 installer.sh
+sudo ./installer.sh dsk-plan-postgres-agent
 ```
 
 ## 3. 패키지 실행

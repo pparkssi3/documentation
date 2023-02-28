@@ -12,12 +12,9 @@
 
 ## 1. 패키지 설치
 ```bash
-DSK_GLOBAL_APIKEY=${VAR_GLOBAL_APIKEY}
 curl -fsSL -o installer.sh https://dsk-agent-s3.s3.ap-northeast-2.amazonaws.com/dsk-agent-s3/public/install.sh
 chmod 700 installer.sh
 sudo ./installer.sh dsk-postgres-agent
-
-sudo DSK_GLOBAL_APIKEY=${DSK_GLOBAL_APIKEY} bash -c '/usr/bin/dsk-postgres-agent init "'${DSK_GLOBAL_APIKEY}'"'
 ```
 ## 2. agent-config 설정
 `/etc/datasaker/dsk-postgres-agent/agent-config.yml`에 내용을 기입합니다.
