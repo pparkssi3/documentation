@@ -2,10 +2,11 @@
 
 ## global-config.yml 생성하기
 ```shell
-mkdir -p /etc/datasaker
+sudo mkdir -p /etc/datasaker
 
-cat << EOF > /etc/datasaker/global-config.yml
-global:
+sudo touch /etc/datasaker/global-config.yml
+
+echo 'global:
   api_key: ${VAR_GLOBAL_APIKEY}
   gates:
     metric_datagate:
@@ -26,6 +27,5 @@ global:
   agent_manager:
     url: api.kr.datasaker.io
     base_url: /dsk-agentmanager-api/agent
-    send_interval: 1m
-EOF
+    send_interval: 1m' | sudo tee /etc/datasaker/global-config.yml
 ```
