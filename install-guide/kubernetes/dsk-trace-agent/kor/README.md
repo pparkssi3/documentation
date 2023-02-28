@@ -4,6 +4,11 @@
 수집된 데이터는 빠르게 처리되어 실시간으로 모니터링 및 분석이 가능합니다. 
 고객의 요구사항에 맞게 "Trace Agent" 설정을 조정하여 최적의 결과를 제공해 드립니다.
 
+본 문서는 Trace Agent를 설치하는 방법을 설명합니다. Opentelemetry 연동 예제는 다음 문서를 참고해주세요.
+
+- [Opentelemetry 연동하기](https://github.com/datasaker/documentation/tree/main/settings/dsk-trace-agent/Instrumentation)
+
+
 # DataSaker를 설치하셨나요?
 현재 Kubernetes 환경에 `DataSaker`가 설치되어 있지 않다면 `DataSaker` 설치를 먼저 진행하여 주시기 바랍니다. [DataSaker 설치하기](https://github.com/datasaker/documentation/tree/main/install-guide/kubernetes)
 
@@ -35,14 +40,11 @@ traceAgent:
     limits:
       cpu: 1000m
       memory: 1000Mi
-```
-<!--
   nodeSelector: {}                  # (option) agent가 동작할 node를 설정합니다.
   affinity: {}                      # (option) agent가 동작할 node를 설정합니다.
   collector:                        
     samplingRate: 10                # (option) Trace 데이터를 수집할 확률을 설정 합니다. (0 < sampleRate <= 100)
 ```
--->
 
 ## 2. Trace agent 동작
 ```shell
@@ -60,10 +62,8 @@ helm upgrade datasaker ~/datasaker/agent-helm -n datasaker \
 | 4317  | TCP      | otlp-grpc      |
 | 4318  | TCP      | otlp-http      |
 
-<!--
 # 주의 사항
 
 > 기본적으로, Trace agent는 데몬셋으로 배포됩니다. 따라서, 모든 노드에 Trace agent가 설치됩니다. \
 > 만약, 특정 노드에만 Trace agent를 설치하고 싶다면, 해당 노드를 위한 afiinity나 nodeSelector를 설정해주시기 바랍니다. \
 > 다만, opentelemetry가 연동된 애플리케이션은 Trace agent가 설치된 노드에서만 데이터를 정상적으로 송신 할 수 있으므로 주의하시기 바랍니다.
--->
