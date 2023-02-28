@@ -4,8 +4,13 @@
 수집된 데이터는 빠르게 처리되어 실시간으로 모니터링 및 분석이 가능합니다.
 고객의 요구사항에 맞게 "Trace Agent" 설정을 조정하여 최적의 결과를 제공해 드립니다.
 
+본 문서는 Trace Agent를 설치하는 방법을 설명합니다. Opentelemetry 연동 예제는 다음 문서를 참고해주세요. 
+
+- [Opentelemetry 연동하기](https://github.com/datasaker/documentation/tree/main/settings/dsk-trace-agent/Instrumentation)
+
 # DataSaker 설정파일을 생성하셨나요?
-현재 Ubuntu 환경에서는 `DataSaker` 에이전트를 설치하기 위해서는 기본 설정 파일이 생성되어 있어야 합니다. 만약 기본 설정 파일을 생성하지 않았다면 생성하여 주시기 바랍니다. [DataSaker 설정하기](https://github.com/datasaker/documentation/tree/main/install-guide/linux/ubuntu)
+현재 Ubuntu 환경에서는 `DataSaker` 에이전트를 설치하기 위해서는 기본 설정 파일이 생성되어 있어야 합니다. \
+만약 기본 설정 파일을 생성하지 않았다면 생성하여 주시기 바랍니다. [DataSaker 설정하기](https://github.com/datasaker/documentation/tree/main/install-guide/linux/ubuntu)
 
 # Trace agent 설치하기
 ## 1. 패키지 설치
@@ -28,8 +33,13 @@ vi /etc/datasaker/dsk-trace-agent/agent-config.yaml
 ``` yaml
 # Trace agent 설정 파일
 agent:
-  agent_name: "your_agent_name_what_you_want" # default=trace-agent
-  cluster_id: "test-cluster-id"               # default=unknown_cluster
+  metadata:
+  #  agent_name: "your_agent_name_what_you_want" # default=trace-agent
+  #  cluster_id: "test-cluster-id"               # default=unknown_cluster
+  #option:
+  #  collector_config:
+  #    sampling_rate: 10                        # default=10, 0~100
+      
 ```
 
 ## 3. 패키지 실행
