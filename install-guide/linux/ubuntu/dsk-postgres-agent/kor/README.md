@@ -32,6 +32,9 @@ agent:
       port: 19187
       args:
         - --extend.query-path=/etc/datasaker/dsk-postgres-agent/queries.yaml
+        - --data-source-user=<monitoring account name>
+        - --data-source-pass=<monitoring account pass>
+        - --data-source-uri=<monitoring database uri>
     scrape_interval: 15s
     scrape_timeout: 5s
     scrape_configs:
@@ -40,14 +43,6 @@ agent:
         filtering_configs:
           rule: drop
 ```
-환경변수를 설정합니다.
-```shell
-systemctl set-environment DATA_SOURCE_USER=<your_postgres_account>
-systemctl set-environment DATA_SOURCE_PASS=<your_postgres_account_pass>
-systemctl set-environment DATA_SOURCE_URI=<DB_ADDRESS:DB_PORT/DB_NAME?sslmode=disable>
-```
-`DATA_SOURCE_USER`는 모니터링 하려는 데이터베이스가 보유하고 있는 모니터링 계정 명입니다.\
-`DATA_SOURCE_PASS`는 
 ## 3. 패키지 실행
 ```shell
 systemctl enable dsk-postgres-agent --now
