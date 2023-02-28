@@ -10,6 +10,7 @@
 
 # Log agent 설치하기
 <!-- 
+`Log agent`는 현재 Ubuntu 18.04.6 LTS (Bionic Beaver) 환경에서만 지원하고 있습니다.
 
 ## 1. 패키지 설치
 

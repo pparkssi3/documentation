@@ -1,8 +1,19 @@
-# 쿠버네티스 환경에서 DataSaker Postgres agent 설치하기
-'Postgres agent'는 데이터베이스의 상태 및 슬로우 쿼리를 실시간으로 수집합니다.
-이를 통해 데이터베이스의 성능 지표, 리소스 사용량, 슬로우 쿼리 등 다양한 정보를 수집할 수 있습니다.
-수집된 데이터를 기반으로 데이터베이스의 성능 병목 현상을 파악하고, 대응할 수 있습니다.
-또한, 슬로우 쿼리를 탐지하여 인덱스 생성, 쿼리 최적화 등의 방법으로 데이터베이스 성능을 개선할 수 있습니다.
+# 쿠버네티스 환경에서 DataSaker Postgres agents 설치하기
+'Postgres agents'는 `postgres agent`와 `plan-postgres-agent`로 구성되어 있습니다.\
+이를 통해 데이터베이스의 성능 지표, 리소스 사용량, 슬로우 쿼리 등 다양한 정보를 수집할 수 있습니다.\
+고객의 요구사항에 따라 `plan-postgres-agent`는 `on/off` 형태로 사용 할 수 있습니다.
+
+
+## postgres agent
+`postgres agent`는 데이터베이스의 상태를 실시간으로 수집합니다.\
+이를 통해 데이터베이스의 성능 지표, 리소스 사용량 등 다양한 정보를 수집할 수 있습니다.\
+수집된 데이터를 기반으로 데이터베이스의 성능 병목 현상을 파악하고, 대응할 수 있습니다.\
+고객의 요구사항에 맞게 에이전트 설정을 조정하여 최적의 결과를 제공해 드립니다.
+
+## plan-postgres agent
+`plan-postgres-agent`는 데이터베이스의 `active session`을 실시간으로 수집합니다.\
+이를 통해 데이터베이스의 슬로우 쿼리에 대한 정보를 수집할 수 있습니다.\
+슬로우 쿼리를 탐지하여 인덱스 생성, 쿼리 최적화 등의 방법으로 데이터베이스 성능을 개선할 수 있습니다.\
 고객의 요구사항에 맞게 에이전트 설정을 조정하여 최적의 결과를 제공해 드립니다.
 
 # DataSaker를 설치하셨나요?
@@ -35,8 +46,6 @@ postgresAgents:
         slow_query_standard: 5s
         executor_number: 10
         sender_number: 10
-        activity_query_buffer: 50
-        plan_sender_buffer: 50
       resources:
         requests:
           cpu: 100m
