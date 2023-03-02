@@ -1,3 +1,4 @@
+
 # Ubuntu 환경에 DataSaker의 Base agent 설치하기
 `Base agent`는 서버에서 발생하는 다양한 정보를 실시간으로 수집합니다.
 예를 들어, 메모리, CPU 사용량 등 서버의 성능 지표, 네트워크 트래픽, Container 정보 등 다양한 정보를 수집할 수 있습니다.
