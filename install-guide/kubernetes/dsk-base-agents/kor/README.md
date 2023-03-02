@@ -8,7 +8,7 @@
 현재 Kubernetes 환경에 `DataSaker`가 설치되어 있지 않다면 `DataSaker` 설치를 먼저 진행하여 주시기 바랍니다. [DataSaker 설치하기](https://github.com/datasaker/documentation/tree/main/install-guide/kubernetes)
 
 # Base agent 설치하기
-## 1. Base agent 설정 값 등록하기
+1. Base agent 설정 값 등록하기
 
 ```shell
 cat << EOF >> ~/datasaker/config.yaml
