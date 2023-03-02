@@ -27,7 +27,9 @@ traceAgent:
   imgPolicy: Always                 # agent의 Image Policy를 설정합니다. (Always, IfNotPresent, Never)
   imgVersion: 'latest'              # agent의 Image Version를 설정합니다.
   logLevel: 'INFO'                  # agent의 log level을 설정합니다. (debug > info > warn > error > panic > fatal)
-  tags: 'key1=value1,key2=value2'   # 사용자 설정으로 데이터에 추가할 Tag를 입력하세요. 
+  tags:                             # 사용자 설정으로 데이터에 추가할 Tag를 입력하세요. 
+  - key1=value1
+  - key2=value2
   resource:                         # agent의 resource를 설정합니다. 너무 작게할 경우 정상동작을 못할 수 있습니다.
     requests:
       cpu: 100m
