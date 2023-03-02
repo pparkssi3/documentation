@@ -9,6 +9,7 @@
 
 # Base agent 설치하기
 ## 1. Base agent 설정 값 등록
+
 ```shell
 cat << EOF >> ~/datasaker/config.yaml
 
@@ -16,6 +17,7 @@ baseAgents:
   enabled: true
 EOF
 ```
+
 ### Base agent 설정 값
 Base agent의 설정 값의 의미와 default값은 다음과 같습니다. 사용자마다 에이전트 설정에 대해 다른 요구사항이 있습니다. 따라서 에이전트 설정을 사용자 설정에 맞게 조정해야 합니다. 최적의 결과를 위해 에이전트 설정을 조정하세요.
 "~/datasaker/config.yaml"에서 해당 값을 추가하거나 수정하세요.
