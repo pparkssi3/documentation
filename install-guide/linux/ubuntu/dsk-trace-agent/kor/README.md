@@ -34,7 +34,8 @@ agent:
 
 ## 3. 패키지 실행
 ```shell
-sudo systemctl start dsk-trace-agent```
+systemctl enable dsk-trace-agent --now
+```
 
 ## 4. 패키지 실행 상태 확인
 ```shell
