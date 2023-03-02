@@ -34,23 +34,21 @@ agent:
 
 ## 3. 패키지 실행
 ```shell
-sudo /usr/bin/dsk-trace-agent start
-```
+sudo systemctl start dsk-trace-agent```
 
 ## 4. 패키지 실행 상태 확인
 ```shell
-$ sudo dsk-trace-agents status
-Agent is running
-Exporter is running
+$ sudo systemctl status dsk-trace-agent
 ```
 
 # Trace agent 제거하기
 ## 1. 패키지 중단
 ```shell
-sudo dsk-trace-agent stop
+sudo systemctl stop dsk-trace-agent
 ```
 
 ## 2. 패키지 제거
 ```shell
-sudo apt-get remove dsk-trace-agent
+sudo systemctl stop dsk-trace-agent
+sudo apt remove dsk-trace-agent
 ```
