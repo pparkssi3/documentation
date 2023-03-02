@@ -1,4 +1,4 @@
-# Opentemetry 연동 가이드
+# Opentelemetry 연동 가이드
 
 Opentelemetry는 오픈소스 프로젝트로, 다양한 언어와 프레임워크를 지원하는 분산 추적 시스템입니다.
 
