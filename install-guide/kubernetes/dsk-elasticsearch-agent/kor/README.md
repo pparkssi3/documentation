@@ -60,12 +60,18 @@ elasticsearchAgent:
           cpu: 1000m
           memory: 1000Mi
 ```
-
+<!--
 ## 2. Elasticsearch agent 동작
 ```shell
 helm upgrade datasaker ~/datasaker/agent-helm -n datasaker \
   -f ~/datasaker/config.yaml
 ```
+-->
 
+## 2. Elasticsearch agent 동작
+```shell
+helm upgrade datasaker datasaker/agent-helm -n datasaker \
+  -f ~/datasaker/config.yaml
+```
 
 다음 문서를 참고해주세요. [관련 문서](../../../../settings/dsk-elasticsearch-agent/settings.md)
