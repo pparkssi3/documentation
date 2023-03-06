@@ -65,10 +65,17 @@ logAgent:
         kind: postgres                         # 수집 대상의 application 개발 언어 및 database 종류를 입력합니다. [postgres | mysql | java | etc] (기본 설정값: etc)
         address: 0.0.0.0:5432                  # 수집 대상 database 주소를 입력합니다.
 ```
-
+<!--
 ## 2. Log agent 동작
 ```shell
 helm upgrade datasaker ~/datasaker/agent-helm -n datasaker \
+  -f ~/datasaker/config.yaml
+```
+-->
+
+## 2. Log agent 동작
+```shell
+helm upgrade datasaker datasaker/agent-helm -n datasaker \
   -f ~/datasaker/config.yaml
 ```
 
