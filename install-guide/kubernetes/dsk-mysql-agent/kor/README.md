@@ -92,10 +92,17 @@ mysqlAgents:
           cpu: 1000m
           memory: 1000Mi
 ```
-
+<!--
 ## 2. Mysql agent 동작
 ```shell
 helm upgrade datasaker ~/datasaker/agent-helm -n datasaker \
+  -f ~/datasaker/config.yaml
+```
+-->
+
+## 2. Mysql agent 동작
+```shell
+helm upgrade datasaker datasaker/agent-helm -n datasaker \
   -f ~/datasaker/config.yaml
 ```
 
