@@ -25,6 +25,7 @@ EOF
 ```shell
 helm repo add datasaker https://datasaker.github.io/agent-helm/
 ```
+<!--
 ### 데이터세이커 헬름 가져오기
 ```shell
 helm pull datasaker/agent-helm
@@ -33,8 +34,15 @@ helm pull datasaker/agent-helm
 ```shell
 tar -zxvf agent-helm-0.1.0.tgz -C ~/datasaker
 ```
+
 ### DataSaker 설치
 ```shell
 helm install datasaker ~/datasaker/agent-helm -n datasaker --create-namespace \
+  -f ~/datasaker/config.yaml
+```
+-->
+### DataSaker 설치
+```shell
+helm install datasaker datasaker/agent-helm -n datasaker --create-namespace \
   -f ~/datasaker/config.yaml
 ```
