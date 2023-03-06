@@ -45,10 +45,17 @@ traceAgent:
     samplingRate: 10                # (option) Trace 데이터를 수집할 확률을 설정 합니다. (0 < sampleRate <= 100)
 ```
 -->
-
+<!--
 ## 2. Trace agent 동작
 ```shell
 helm upgrade datasaker ~/datasaker/agent-helm -n datasaker \
+  -f ~/datasaker/config.yaml
+```
+-->
+
+## 2. Trace agent 동작
+```shell
+helm upgrade datasaker datasaker/agent-helm -n datasaker \
   -f ~/datasaker/config.yaml
 ```
 
