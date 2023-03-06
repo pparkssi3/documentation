@@ -90,8 +90,15 @@ postgresAgents:
           memory: 1000Mi
 ```
 
+<!--
 ## 2. Postgres agent 동작
 ```shell
 helm upgrade datasaker ~/datasaker/agent-helm -n datasaker \
+  -f ~/datasaker/config.yaml
+```
+-->
+## 2. Postgres agent 동작
+```shell
+helm upgrade datasaker datasaker/agent-helm -n datasaker \
   -f ~/datasaker/config.yaml
 ```
