@@ -17,9 +17,16 @@ Mongo agent의 설정 값의 의미와 default값은 다음과 같습니다. 사
 "~/datasaker/config.yaml"에서 해당 값을 추가하거나 수정하세요.
 ```yaml
 ```
-
+<!--
 ## 2. Mongo agent 동작
 ```shell
 helm upgrade datasaker ~/datasaker/agent-helm -n datasaker \
+  -f ~/datasaker/config.yaml
+```
+-->
+
+## 2. Mongo agent 동작
+```shell
+helm upgrade datasaker datasaker/agent-helm -n datasaker \
   -f ~/datasaker/config.yaml
 ```
