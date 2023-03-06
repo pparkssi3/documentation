@@ -50,11 +50,18 @@ baseAgents:
         cpu: 1000m
         memory: 1000Mi
 ```
-
+<!--
 ## 2. Base agent 동작
 
 ```shell
 helm upgrade datasaker ~/datasaker/agent-helm -n datasaker \
   -f ~/datasaker/config.yaml
 ```
+-->
 
+## 2. Base agent 동작
+
+```shell
+helm upgrade datasaker datasaker/agent-helm -n datasaker \
+  -f ~/datasaker/config.yaml
+```
