@@ -1,3 +1,6 @@
+# Coming soon
+
+<!--
 # Install Log agent on Ubuntu/Debian
 
 ## global-config Configuration
@@ -57,9 +60,6 @@ agent:
 
 > sudo permission is required.
 
-<!-- 
-example API Key : VAR_GLOBAL_APIKEY=1234567890abcdef1234567890abcdef
- -->
 ```bash
 DSK_GLOBAL_APIKEY=${VAR_GLOBAL_APIKEY}
 
@@ -99,3 +99,4 @@ sudo dsk-log-agent stop
 ```bash
 sudo apt-get remove dsk-log-agent
 ```
+-->

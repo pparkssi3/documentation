@@ -1,12 +1,12 @@
+# Coming soon
+
+<!--
 # Install MySQL agent on Ubuntu/Debian
 
 ## 1. Installing the package
 
 > **sudo** permission is required.
 
-<!-- 
-example API Key : VAR_GLOBAL_APIKEY=1234567890abcdef1234567890abcdef
- -->
 ```bash
 DSK_GLOBAL_APIKEY=${VAR_GLOBAL_APIKEY}
 
@@ -36,3 +36,4 @@ sudo dsk-mysql-agent stop
 ```bash
 sudo apt-get remove dsk-mysql-agent
 ```
+-->

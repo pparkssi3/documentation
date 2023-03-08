@@ -1,8 +1,8 @@
 # Ubuntu 환경에 DataSaker Elasticsearch agent 설치하기
 `Elasticsearch agent`는 elasticsearch 상태 정보를 수집합니다.
 
-## DataSaker 설정파일을 생성하셨나요?
-현재 Ubuntu 환경에서는 `DataSaker` 에이전트를 설치하기 위해서는 기본 설정 파일이 생성되어 있어야 합니다. 만약 기본 설정 파일을 생성하지 않았다면 생성하여 주시기 바랍니다. [DataSaker 설정하기](../../README.md)
+# DataSaker 선행 작업을 진행하였나요?
+현재 Ubuntu 환경에서는 `DataSaker`의 선행 작업이 진행되지 않으셨다면 `DataSaker` 선행 작업을 먼저 진행하여 주시기 바랍니다. [DataSaker 선행 작업](${MANUAL_UBUNTU_KR})
 
 # Elasticsearch agent 설치하기
 ## 1. 패키지 설치

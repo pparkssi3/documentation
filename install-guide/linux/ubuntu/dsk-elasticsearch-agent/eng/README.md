@@ -1,3 +1,6 @@
+# Coming soon
+
+<!--
 # Installing Elasticsearch Agent on Ubuntu/Debian
 
 ## How to use the package
@@ -6,9 +9,6 @@
 
 > **sudo** permission is required.
 
-<!-- 
-example API Key : VAR_GLOBAL_APIKEY=1234567890abcdef1234567890abcdef
- -->
 ```bash
 DSK_GLOBAL_APIKEY=${VAR_GLOBAL_APIKEY}
 
@@ -60,3 +60,4 @@ You can change the agent settings to monitor Elasticsearch.
 To change the agent settings, you can add or remove the arguments.
 
 Please refer to the [relevant documents](../../../../settings/dsk-elasticsearch-agent/settings.md).
+-->

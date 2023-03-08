@@ -1,8 +1,8 @@
-# Kubernetes 환경에서 DataSaker 설치하기
-DataSaker는 Kubernetes 환경에서 헬름을 통한 설치 가이드를 진행합니다. (헬름이 설치되어 있지 않으시다면 헬름 설치를 먼저 진행하여 주시기 바랍니다. https://helm.sh/ko/docs/intro/install/)
+# Kubernetes 환경에서 DataSaker 설정파일 구성하기
+`DataSaker`는 `Kubernetes` 환경에서 `헬름`을 통한 설치 가이드를 진행합니다. (`헬름`이 설치되어 있지 않으시다면 헬름 설치를 먼저 진행하여 주시기 바랍니다. https://helm.sh/ko/docs/intro/install/)
 
 ## 사용자 정보 등록하기
-DataSaker를 설치하기 위한 사용자 테넌트 정보를 등록합니다.
+`DataSaker` 설정파일 구성하기 위한 사용자 테넌트 정보를 등록합니다.
 
 ### 디렉토리 생성
 ```shell
@@ -20,7 +20,7 @@ userInfo:
 EOF
 ```
 
-## 헬름을 이용한 DataSaker 설치
+## 헬름을 이용한 DataSaker 설정파일 구성
 ### DataSaker 헬름 레포지토리 추가
 ```shell
 helm repo add datasaker https://datasaker.github.io/agent-helm/
@@ -41,7 +41,7 @@ helm install datasaker ~/datasaker/agent-helm -n datasaker --create-namespace \
   -f ~/datasaker/config.yaml
 ```
 -->
-### DataSaker 설치
+### Helm install을 통하여 DataSaker 설정파일 생성
 ```shell
 helm install datasaker datasaker/agent-helm -n datasaker --create-namespace \
   -f ~/datasaker/config.yaml
