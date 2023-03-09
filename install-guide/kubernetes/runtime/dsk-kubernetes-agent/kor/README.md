@@ -21,7 +21,15 @@ kubernetesAgent:
 EOF
 ```
 
-### Kubernetes agent 설정 값
+## 2. Kubernetes agent 동작
+```shell
+helm upgrade datasaker datasaker/agent-helm -n datasaker \
+  -f ~/datasaker/config.yaml
+```
+
+# Kubernetes agent 설정하기
+
+## Kubernetes agent 설정 값
 Kubernetes agent의 설정 값의 의미와 default값은 다음과 같습니다. 사용자마다 에이전트 설정에 대해 다른 요구사항이 있습니다. 따라서 에이전트 설정을 사용자 설정에 맞게 조정해야 합니다. 최적의 결과를 위해 에이전트 설정을 조정하세요.
 "~/datasaker/config.yaml"에서 해당 값을 추가하거나 수정하세요.
 ```yaml
@@ -50,17 +58,4 @@ kubernetesAgent:
       limits:
         cpu: 1000m
         memory: 1000Mi
-```
-<!--
-## 2. Kubernetes agent 동작
-```shell
-helm upgrade datasaker ~/datasaker/agent-helm -n datasaker \
-  -f ~/datasaker/config.yaml
-```
--->
-
-## 2. Kubernetes agent 동작
-```shell
-helm upgrade datasaker datasaker/agent-helm -n datasaker \
-  -f ~/datasaker/config.yaml
 ```
