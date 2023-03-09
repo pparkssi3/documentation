@@ -11,9 +11,12 @@
 # Plan Postgres13 Agent 설치하기
 ## 1. agent-config 설정
 ```bash
->$ sudo dsk-plan-postgres13-agent init ${VAR_CLUSTER_NAME}
->$ cat /etc/datasaker/dsk-plan-postgres13-agent/agent-config.yml
->agent:
+sudo dsk-plan-postgres13-agent init ${VAR_CLUSTER_NAME}
+cat /etc/datasaker/dsk-plan-postgres13-agent/agent-config.yml
+```
+결과
+```
+agent:
   metadata:
     agent_name: "dsk-plan-postgres13-agent"         # replace you want
     cluster_id: ${VAR_CLUSTER_NAME}                 # replace you want
@@ -34,7 +37,7 @@
 ```
 
 ## 2. 패키지 설치
-> sudo 권한이 필요합니다.
+sudo 권한이 필요합니다.
 ```bash
 curl -fsSL -o installer.sh https://dsk-agent-s3.s3.ap-northeast-2.amazonaws.com/dsk-agent-s3/public/install.sh
 chmod 700 installer.sh
@@ -43,29 +46,26 @@ sudo ./installer.sh dsk-postgres13-agent
 
 ## 3. 패키지 실행
 ```bash
-$ sudo dsk-plan-postgres13-agent start
-Agent is running
+sudo dsk-plan-postgres13-agent start
 ```
 
 ## 4. 패키지 실행 상태 확인
 ### Running
 ```bash
-$ sudo dsk-plan-postgres13-agent status
-Agent is running
+sudo dsk-plan-postgres13-agent status
 ```
 ### Not Running
 ```bash
-$ sudo dsk-plan-postgres13-agent status
-Agent is not running
+sudo dsk-plan-postgres13-agent status
 ```
 
 # Plan Postgres13 Agent 제거하기
 ## 1. 패키지 중단
 ```bash
-$ sudo dsk-plan-postgres13-agent stop
+sudo dsk-plan-postgres13-agent stop
 ```
 
 ## 2. 패키지 제거
 ```bash
-$ sudo apt remove dsk-plan-postgres13-agent
+sudo apt remove dsk-plan-postgres13-agent
 ```
