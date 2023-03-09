@@ -18,7 +18,33 @@ traceAgent:
 EOF
 ```
 
-### Trace agent 설정 값
+## 2. Trace agent 동작
+```shell
+helm upgrade datasaker datasaker/agent-helm -n datasaker \
+  -f ~/datasaker/config.yaml
+```
+
+# Trace agent 포트 정보
+| Port  | Protocol | Describe       |
+|-------|----------|----------------|
+| 6831  | UDP      | thrift-compact |
+| 6832  | UDP      | thrift-binary  |
+| 14250 | TCP      | jaeger-grpc    |
+| 14268 | TCP      | jaeger-http    |
+| 4317  | TCP      | otlp-grpc      |
+| 4318  | TCP      | otlp-http      |
+
+<!--
+# 주의 사항
+
+> 기본적으로, Trace agent는 데몬셋으로 배포됩니다. 따라서, 모든 노드에 Trace agent가 설치됩니다. \
+> 만약, 특정 노드에만 Trace agent를 설치하고 싶다면, 해당 노드를 위한 afiinity나 nodeSelector를 설정해주시기 바랍니다. \
+> 다만, opentelemetry가 연동된 애플리케이션은 Trace agent가 설치된 노드에서만 데이터를 정상적으로 송신 할 수 있으므로 주의하시기 바랍니다.
+-->
+
+# Trace agent 설정하기
+
+## Trace agent 설정 값
 Trace agent의 설정 값의 의미와 default값은 다음과 같습니다. 사용자마다 에이전트 설정에 대해 다른 요구사항이 있습니다. 따라서 에이전트 설정을 사용자 설정에 맞게 조정해야 합니다. 최적의 결과를 위해 에이전트 설정을 조정하세요
 "~/datasaker/config.yaml"에서 해당 값을 추가하거나 수정하세요.
 ```yaml
@@ -52,28 +78,4 @@ traceAgent:
 helm upgrade datasaker ~/datasaker/agent-helm -n datasaker \
   -f ~/datasaker/config.yaml
 ```
--->
-
-## 2. Trace agent 동작
-```shell
-helm upgrade datasaker datasaker/agent-helm -n datasaker \
-  -f ~/datasaker/config.yaml
-```
-
-# Trace agent 포트 정보
-| Port  | Protocol | Describe       |
-|-------|----------|----------------|
-| 6831  | UDP      | thrift-compact |
-| 6832  | UDP      | thrift-binary  |
-| 14250 | TCP      | jaeger-grpc    |
-| 14268 | TCP      | jaeger-http    |
-| 4317  | TCP      | otlp-grpc      |
-| 4318  | TCP      | otlp-http      |
-
-<!--
-# 주의 사항
-
-> 기본적으로, Trace agent는 데몬셋으로 배포됩니다. 따라서, 모든 노드에 Trace agent가 설치됩니다. \
-> 만약, 특정 노드에만 Trace agent를 설치하고 싶다면, 해당 노드를 위한 afiinity나 nodeSelector를 설정해주시기 바랍니다. \
-> 다만, opentelemetry가 연동된 애플리케이션은 Trace agent가 설치된 노드에서만 데이터를 정상적으로 송신 할 수 있으므로 주의하시기 바랍니다.
 -->
