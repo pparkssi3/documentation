@@ -43,6 +43,7 @@ baseAgent:
     imgPolicy: 'Always'   # agent의 Image Policy를 설정합니다. [Always, IfNotPresent, Never]
     imgVersion: 'latest'  # agent의 Image Version를 설정합니다.
     logLevel: 'INFO'      # agent의 log level을 설정합니다. [debug > info > warn > error > panic > fatal]
+    listenPort: 19110     # agent가 사용하는 port를 설정합니다.
     resources:            # agent의 resource를 설정합니다. 너무 작게할 경우 정상동작을 못할 수 있습니다.
       requests:
         cpu: 100m
@@ -54,6 +55,7 @@ baseAgent:
     imgPolicy: 'Always'   # agent의 Image Policy를 설정합니다. [Always, IfNotPresent, Never]
     imgVersion: 'latest'  # agent의 Image Version를 설정합니다.
     logLevel: 'INFO'      # agent의 log level을 설정합니다. [debug > info > warn > error > panic > fatal]
+    listenPort: 14194     # agent가 사용하는 port를 설정합니다.
     resources:            # agent의 resource를 설정합니다. 너무 작게할 경우 정상동작을 못할 수 있습니다.
       requests:
         cpu: 100m
@@ -62,13 +64,28 @@ baseAgent:
         cpu: 1000m
         memory: 1000Mi
 ```
-<!--
-## 2. Base agent 동작
+
+# 트러블슈팅
+
+## 포트 사용 이슈
+
+Base Agent는 모니터링을 위해, 설치 환경에서 두 개의 포트를 사용합니다. (default=`14194`,`19110`) 해당 포트를 서버의 다른 프로그램이 이미 점유중일때, Base agent는 정상적으로 기동하지 못하며 다음과 같은 로그를 출력합니다.
 
 ```shell
-helm upgrade datasaker ~/datasaker/agent-helm -n datasaker \
-  -f ~/datasaker/config.yaml
+{"level":"error","ts":"2023-03-09T08:19:03Z","msg":"error occurred from subprocess","error":"error occured during running child process. err: exit status 255"}
 ```
--->
 
+이 문제를 해결하기 위해서, config.yaml 파일에 `listenPort` 설정을 추가할 수 있습니다.
 
+예를들어, `base agent` 내부의 `container agent`가 사용하는 14194 포트를 바꾸기 위해 다음과 같이 설정을 수정할 수 있습니다.
+
+```yaml
+baseAgent:
+  enabled: true
+  enableMaster: true
+  nodeAgent:
+    logLevel: 'INFO'
+  containerAgent:
+    logLevel: 'INFO'
+    listenPort: 14195
+```
