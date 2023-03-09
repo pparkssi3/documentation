@@ -48,8 +48,8 @@ Elasticsearch agent의 설정 값의 의미와 default값은 다음과 같습니
 ```yaml
 elasticsearchAgent:
   list:
-    - name: '엘라스틱서치 이름'           # 엘라스틱서치를 구분할 수 있는 이름 (반듯이 사용자가 명시해야 합니다.)
-      uri: '엘라스틱서치 주소'            # 엘라스틱서치 주소 (반듯이 사용자가 명시해야 합니다.)
+    - name: '엘라스틱서치 이름'           # 엘라스틱서치를 구분할 수 있는 이름 (반드시 사용자가 명시해야 합니다.)
+      uri: '엘라스틱서치 주소'            # 엘라스틱서치 주소 (반드시 사용자가 명시해야 합니다.)
       tolerations: []                   # 배포할 워커 노드에 taint가 설정되어 있을 경우 taint를 추가합니다.
       imgPolicy: 'Always'               # agent의 Image Policy를 설정합니다. [Always, IfNotPresent, Never]
       imgVersion: 'latest'              # agent의 Image 태그를 설정합니다.
