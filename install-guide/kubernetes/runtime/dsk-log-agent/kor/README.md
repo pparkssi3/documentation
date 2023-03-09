@@ -9,11 +9,16 @@
 현재 Kubernetes 환경에 `DataSaker`의 선행 작업이 진행되지 않으셨다면 `DataSaker` 선행 작업을 먼저 진행하여 주시기 바랍니다. [DataSaker 선행 작업](${MANUAL_KUBERNETES_KR})
 
 # Log agent 설치하기
-
 기본적으로, `Log agent`는 쿠버네티스 환경에서 데몬셋(daemonset)으로 배포됩니다.
 따라서, 모든 노드에 `Log agent`가 설치됩니다. 만약, 특정 노드에만 `Log agent`를 설치하고 싶다면, 해당 노드에 affinity 또는 nodeSelector를 추가적으로 설정해주십시오. 
 
 ## 1. Log agent 설정 값 등록
+필수 입력 정보는 다음과 같습니다.
+- collect[].paths[] : 수집할 컨테이너 로그파일 경로
+- collect[].tag : 수집할 로그 데이터에 추가할 태그정보
+- collect[].service : 서비스 이름 정보
+- collect[].source : 수집 대상의 정보
+
 ```shell
 cat << EOF >> ~/datasaker/config.yaml
 
@@ -27,10 +32,10 @@ logAgent:
       keywords: []
       tag: kubernetes-app-log
       service:
-        name: datasaker
+        name: my-service
         kind: agent
       source:
-        type: app
+        type: my-source
         kind: etc
 EOF
 ```
