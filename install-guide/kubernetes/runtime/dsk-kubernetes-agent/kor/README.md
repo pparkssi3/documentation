@@ -14,6 +14,10 @@ cat << EOF >> ~/datasaker/config.yaml
 
 kubernetesAgent:
   enabled: true
+  kubeStateAgent:
+    logLevel: 'INFO'
+  k8sAgent:
+    logLevel: 'INFO'
 EOF
 ```
 
@@ -23,7 +27,6 @@ Kubernetes agent의 설정 값의 의미와 default값은 다음과 같습니다
 ```yaml
 kubernetesAgent:
   enabled: false              # Kubernetes agent를 활성화, 비활설화를 설정합니다.
-  enableMaster: true          # 기본적으로 마스터 노드의 정보를 수집합니다.
   tolerations: []             # 워커 노드에 taint가 설정되어 있을 경우 taint를 추가합니다.
   kubeStateAgent:             # kubernetes의 상태 정보를 수집하는 agent입니다.
     imgPolicy: 'Always'       # agent의 Image Policy를 설정합니다. [Always, IfNotPresent, Never]
