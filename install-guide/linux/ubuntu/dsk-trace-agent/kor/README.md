@@ -45,7 +45,7 @@ systemctl enable dsk-trace-agent --now
 ## 4. 패키지 실행 상태 확인
 
 ```shell
-$ sudo systemctl status dsk-trace-agent
+sudo systemctl status dsk-trace-agent
 ```
 
 # Trace agent 제거하기
