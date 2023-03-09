@@ -15,6 +15,11 @@ cat << EOF >> ~/datasaker/config.yaml
 
 baseAgent:
   enabled: true
+  enableMaster: true
+  nodeAgent:
+    logLevel: 'INFO'
+  containerAgent:
+    logLevel: 'INFO'
 EOF
 ```
 
