@@ -69,7 +69,7 @@ Postgres agent의 설정 값의 의미와 default값은 다음과 같습니다. 
 ```yaml
 postgresAgents:
   list:
-    - name: 'pg-1'                      # postgres를 구분할 수 있는 이름 (반듯이 사용자가 명시해야 합니다.)
+    - name: 'pg-1'                      # postgres를 구분할 수 있는 이름 (반드시 사용자가 명시해야 합니다.)
       tolerations: []                   # 배포할 워커 노드에 taint가 설정되어 있을 경우 taint를 추가합니다.
       imgPolicy: 'Always'               # agent의 Image Policy를 설정합니다.
       imgVersion: 'latest'              # agent의 Image 태그를 설정합니다.
