@@ -1,3 +1,6 @@
+# Coming soon
+
+<!--
 # Installing DataSaker Trace agent on Ubuntu
 
 `Trace agent` works with open source distributed tracing systems such as opentelemetry and Jaeger to collect application distributed tracing data.
@@ -11,9 +14,6 @@ In the current Ubuntu environment, a basic configuration file must be created to
 
 # Install Trace agent
 ## 1. Installing the package
-<!-- 
-example API Key : VAR_GLOBAL_APIKEY=1234567890abcdef1234567890abcdef
- -->
 ```bash
 DSK_GLOBAL_APIKEY=${VAR_GLOBAL_APIKEY}
 
@@ -43,7 +43,7 @@ sudo /usr/bin/dsk-trace-agent start
 
 ## 4. Checking the status of package
 ```bash
-$ sudo dsk-trace-agents status
+$ sudo dsk-trace-agent status
 Agent is running
 Exporter is running
 ```
@@ -58,3 +58,4 @@ sudo dsk-trace-agent stop
 ```bash
 sudo apt-get remove dsk-trace-agent
 ```
+-->
