@@ -14,6 +14,7 @@ cat << EOF >> ~/datasaker/config.yaml
 
 traceAgent:
   enabled: true
+  logLevel: 'INFO'
 EOF
 ```
 
