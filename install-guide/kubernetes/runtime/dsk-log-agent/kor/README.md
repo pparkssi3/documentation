@@ -19,9 +19,10 @@ cat << EOF >> ~/datasaker/config.yaml
 
 logAgent:
   enabled: true
+  logLevel: 'INFO'
   collect:
     - paths:
-        - /var/log/containers/*.log
+        - /var/log/containers/my-app-*.log
       exclude_paths: []
       keywords: []
       tag: kubernetes-app-log
