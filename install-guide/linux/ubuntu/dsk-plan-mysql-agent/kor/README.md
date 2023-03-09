@@ -14,8 +14,8 @@
 > `cluster_id`의 경우 `dsk-plan-postgres13-agent init <cluster_id>`를 통해 초기화 가능합니다.
 
 ```bash
-$ sudo dsk-plan-mysql-agent init ${VAR_CLUSTER_NAME}
-$ cat /etc/datasaker/dsk-plan-mysql-agent/agent-config.yml
+sudo dsk-plan-mysql-agent init ${VAR_CLUSTER_NAME}
+cat /etc/datasaker/dsk-plan-mysql-agent/agent-config.yml
 
 agent:
   metadata:
@@ -46,29 +46,26 @@ sudo ./installer.sh dsk-plan-mysql-agent
 
 ## 3. 패키지 실행
 ```bash
-$ sudo dsk-plan-mysql-agent start
-  Agent is running
+sudo dsk-plan-mysql-agent start
 ```
 
 ## 4. 패키지 실행 상태 확인
 ### Running
 ```bash
-$ sudo dsk-plan-mysql-agent status
-  Agent is running
+sudo dsk-plan-mysql-agent status
 ```
 ### Not Running
 ```bash
-$ sudo dsk-plan-mysql-agent status
-  Agent is not running
+sudo dsk-plan-mysql-agent status
 ```
 
 # Log agent 제거하기
 ## 1. 패키지 중단
 ```bash
-$ sudo dsk-plan-mysql-agent stop
+sudo dsk-plan-mysql-agent stop
 ```
 
 ## 2. 패키지 제거
 ```bash
-$ sudo apt remove dsk-plan-mysql-agent
+sudo apt remove dsk-plan-mysql-agent
 ``` 
