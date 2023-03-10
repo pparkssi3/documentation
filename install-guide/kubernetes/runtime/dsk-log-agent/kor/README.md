@@ -67,12 +67,12 @@ keywords: [] # 지정된 키워드가 포환된 로그만 수집하도록 설정
 
 ## 3. 로그 수집 대상의 `type`이 `database`인 경우 `address` 설정을 권장합니다.
 
-해당 설정을 통해 관련 database agent 에서 로그 정보를 맵핑하여 보여드립니다. `address` 설정을 하지 않으면 해당 기능을 사용하지 못할 수 있습니다.
+해당 설정을 통해 관련 `database agent` 에서 로그 정보를 맵핑하여 보여드립니다. `address` 설정을 하지 않을 경우, 해당 기능을 사용하지 못할 수 있습니다.
 ```yaml
-      source:
-        type: database
-        kind: postgres
-        address: 0.0.0.0:5432
+source:
+  type: database
+  kind: postgres
+  address: 0.0.0.0:5432
 ```
 
 [//]: # (### 4. 권장 로그 설정 - 각 source kind 별 설정 방법)
@@ -80,7 +80,7 @@ keywords: [] # 지정된 키워드가 포환된 로그만 수집하도록 설정
 # Log Agent 설정하기
 
 ### Log agent 설정 값 
-`Log agent`의 설정 값의 의미와 default값은 다음과 같습니다. 사용자마다 에이전트 설정에 대해 다른 요구사항이 있습니다. 따라서 에이전트 설정을 사용자 설정에 맞게 조정해야 합니다. 최적의 결과를 위해 에이전트 설정을 조정하세요.
+`Log agent`의 설정 값의 의미와 기본 설정값은 다음과 같습니다. 사용자마다 에이전트 설정에 대해 다른 요구사항이 있습니다. 따라서 에이전트 설정을 사용자 설정에 맞게 조정해야 합니다. 최적의 결과를 위해 에이전트 설정을 조정하세요.
 "~/datasaker/config.yaml"에서 해당 값을 추가하거나 수정하세요.
 ```yaml
 logAgent:
