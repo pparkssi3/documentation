@@ -20,7 +20,12 @@ chmod 700 installer.sh
 sudo ./installer.sh dsk-node-agent
 ```
 
-## 2. 패키지 실행 상태 확인
+## 2. 패키지 실행
+```bash
+systemctl start dsk-node-agent
+```
+
+## 3. 패키지 실행 상태 확인
 ```bash
 systemctl status dsk-node-agent
 ```
