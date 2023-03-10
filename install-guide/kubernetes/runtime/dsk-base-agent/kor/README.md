@@ -23,7 +23,7 @@ baseAgent:
 EOF
 ```
 
-## 2. Base agent 동작
+## 2. Base agent 설치
 
 ```shell
 helm upgrade datasaker datasaker/agent-helm -n datasaker \

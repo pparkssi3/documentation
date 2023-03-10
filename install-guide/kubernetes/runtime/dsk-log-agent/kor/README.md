@@ -40,7 +40,7 @@ logAgent:
 EOF
 ```
 
-## 2. Log agent 동작
+## 2. Log agent 설치
 ```shell
 helm upgrade datasaker datasaker/agent-helm -n datasaker \
   -f ~/datasaker/config.yaml

@@ -34,7 +34,7 @@ elasticsearchAgent:
 EOF
 ```
 
-## 2. Elasticsearch agent 동작
+## 2. Elasticsearch agent 설치
 ```shell
 helm upgrade datasaker datasaker/agent-helm -n datasaker \
   -f ~/datasaker/config.yaml

@@ -21,7 +21,7 @@ kubernetesAgent:
 EOF
 ```
 
-## 2. Kubernetes agent 동작
+## 2. Kubernetes agent 설치
 ```shell
 helm upgrade datasaker datasaker/agent-helm -n datasaker \
   -f ~/datasaker/config.yaml

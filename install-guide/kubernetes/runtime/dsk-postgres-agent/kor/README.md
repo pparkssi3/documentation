@@ -55,7 +55,7 @@ postgresAgents:
 EOF
 ```
 
-## 2. Postgres agent 동작
+## 2. Postgres agent 설치
 ```shell
 helm upgrade datasaker datasaker/agent-helm -n datasaker \
   -f ~/datasaker/config.yaml
