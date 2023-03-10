@@ -53,12 +53,11 @@ sudo systemctl status dsk-trace-agent
 ## 1. 패키지 중단
 
 ```shell
-sudo systemctl stop dsk-trace-agent
+systemctl stop dsk-trace-agent
 ```
 
 ## 2. 패키지 제거
 
 ```shell
-sudo systemctl stop dsk-trace-agent
 sudo apt remove dsk-trace-agent
 ```
