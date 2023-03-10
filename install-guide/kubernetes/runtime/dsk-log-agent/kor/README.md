@@ -13,11 +13,8 @@
 따라서, 모든 노드에 `Log agent`가 설치됩니다. 만약, 특정 노드에만 `Log agent`를 설치하고 싶다면, 해당 노드에 affinity 또는 nodeSelector를 추가적으로 설정해주십시오. 
 
 ## 1. Log agent 설정 값 등록
-필수 입력 정보는 다음과 같습니다.
-- collect[].paths[] : 수집할 컨테이너 로그파일 경로
-- collect[].tag : 수집할 로그 데이터에 추가할 태그정보
-- collect[].service : 서비스 이름 정보
-- collect[].source : 수집 대상의 정보
+
+`Log agent`가 정상적으로 동작하기 위해서 반드시 _**collect.paths**_ 에 하나 이상의 로그 수집 경로를 설정해야 합니다.
 
 ```shell
 cat << EOF >> ~/datasaker/config.yaml
@@ -52,7 +49,7 @@ helm upgrade datasaker datasaker/agent-helm -n datasaker -f ~/datasaker/config.y
 로그 수집 경로를 작성하지 않을 경우, `Log agent`가 정상적으로 동작하지 않을 수 있습니다.
 ```yaml
 collect:
-  - paths: # 수집할 로그의 경로를 입력합니다.
+  - paths: # [필수] 수집할 로그의 경로를 입력합니다.
       - /var/log/containers/postgres.log
 ```
 
