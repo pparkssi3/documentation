@@ -1,5 +1,3 @@
-# Coming soon
-<!-- 
 # Ubuntu 환경에 DataSaker Log agent 설치하기
 `Log agent`는 다양한 환경에서 시스템 또는 애플리케이션에서 생성되는 로그 데이터를 거의 실시간으로 수집하고, 처리 및 전송하는 에이전트입니다.
 `Log agent`를 통해 여러 대의 서버에서 생성되는 로그 데이터를 중앙 집중적으로 관리하고 분석하기 위해 사용할 수 있습니다.
@@ -86,4 +84,3 @@ service dsk-log-agent stop
 ```shell
 sudo apt remove dsk-log-agent
 ```
- -->
