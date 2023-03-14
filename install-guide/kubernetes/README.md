@@ -46,3 +46,4 @@ helm install datasaker ~/datasaker/agent-helm -n datasaker --create-namespace \
 helm install datasaker datasaker/agent-helm -n datasaker --create-namespace \
   -f ~/datasaker/config.yaml
 ```
+새로운 차트를 추가하실 경우 `helm repo update`를 진행해 주세요.
