@@ -72,7 +72,10 @@ baseAgent:
 Base Agent는 모니터링을 위해, 설치 환경에서 두 개의 포트를 사용합니다. (default=`14194`,`19110`) 해당 포트를 서버의 다른 프로그램이 이미 점유중일때, Base agent는 정상적으로 기동하지 못하며 다음과 같은 로그를 출력합니다.
 
 ```shell
-{"level":"error","ts":"2023-03-09T08:19:03Z","msg":"error occurred from subprocess","error":"error occured during running child process. err: exit status 255"}
+ts=2023-03-14T02:54:49.460Z caller=node_exporter.go:201 level=error err="listen tcp :19110: bind: address already in use"
+{"level":"error","ts":"2023-03-14T02:54:49Z","msg":"error occurred from subprocess","error":"error occured during running child process. err: exit status 1"}
+{"level":"error","ts":"2023-03-14T02:54:49Z","msg":"error occurred from subprocess","error":"exporter exit unexpectedly and retry count exceeded"}
+{"level":"fatal","ts":"2023-03-14T02:54:49Z","msg":"child process is terminated unexpectedly, please check other logs","error":"exporter exit unexpectedly and retry count exceeded"}
 ```
 
 이 문제를 해결하기 위해서, config.yaml 파일에 `listenPort` 설정을 추가할 수 있습니다.
