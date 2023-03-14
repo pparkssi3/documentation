@@ -80,7 +80,7 @@ ts=2023-03-14T02:54:49.460Z caller=node_exporter.go:201 level=error err="listen 
 
 이 문제를 해결하기 위해서, config.yaml 파일에 `listenPort` 설정을 추가할 수 있습니다.
 
-예를들어, `base agent` 내부의 `container agent`가 사용하는 14194 포트를 14195로 바꾸기 위해 다음과 같이 설정을 수정할 수 있습니다.
+예를들어, `base agent` 내부의 `node agent`가 사용하는 19110 포트를 19111로 바꾸기 위해 다음과 같이 설정을 수정할 수 있습니다.
 
 ```yaml
 baseAgent:
@@ -88,7 +88,7 @@ baseAgent:
   enableMaster: true
   nodeAgent:
     logLevel: 'INFO'
+    listenPort: 19111
   containerAgent:
     logLevel: 'INFO'
-    listenPort: 14195
 ```
