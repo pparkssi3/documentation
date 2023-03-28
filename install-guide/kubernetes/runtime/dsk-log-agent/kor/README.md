@@ -22,18 +22,17 @@ cat << EOF >> ~/datasaker/config.yaml
 logAgent:
   enabled: true
   logLevel: 'INFO'
+  environment: kubernetes
   collect:
-    - paths:
-        - /var/log/containers/my-app-*.log
-      exclude_paths: []
-      keywords: []
-      tag: kubernetes-app-log
+    - paths: []         # (*) 로그 수집 경로
+      exclude_paths: [] # 로그 수집 경로 중 제외시키고자 하는 로그 경로
+      keywords: []      # 로그 수집 키워드 (키워드가 포함된 로그만 수집)
+      tag:              # 사용자 설정 태그
       service:
-        name: my-service
-        kind: agent
-      source:
-        type: my-source
-        kind: etc
+        name:           # 서비스 이름  (기본 설정값: default)
+        category:       # 서비스 분류  [app, database, syslog, etc] (기본 설정값: etc)
+        type:           # 서비스 소스 타입 [postgres, mysql, java] (기본 설정값: etc)
+        address:        # 사용자 설정 - 데이터베이스 host 및 port 정보 (type이 database 인 경우 작성)
 EOF
 ```
 
@@ -66,9 +65,10 @@ keywords: [] # 지정된 키워드가 포환된 로그만 수집하도록 설정
 
 해당 설정을 통해 관련 `database agent` 에서 로그 정보를 맵핑하여 보여드립니다. `address` 설정을 하지 않을 경우, 해당 기능을 사용하지 못할 수 있습니다.
 ```yaml
-source:
-  type: database
-  kind: postgres
+service:
+  name: custom-service-name 
+  category: database
+  type: postgres
   address: 0.0.0.0:5432
 ```
 
@@ -81,29 +81,27 @@ source:
 "~/datasaker/config.yaml"에서 해당 값을 추가하거나 수정하세요.
 ```yaml
 logAgent:
-  enabled: false                                # Log agent 활성화 설정 [true | false ]
-  tolerations: []                               # 배포할 워커 노드에 taint가 설정되어 있을 경우 toleration 설정을 추가합니다.
-  imgPolicy: 'Always'                           # agent의 Image Policy를 설정합니다. [Always | IfNotPresent | Never]
-  imgVersion: 'latest'                          # agent의 Image 태그를 설정합니다.
-  logLevel: 'INFO'                              # agent에서 남기는 log level을 설정합니다. [debug > info > warn > error > panic > fatal]
-  resources:                                    # agent의 resource를 설정합니다. 너무 작게할 경우 정상동작을 못할 수 있습니다.
+  enabled: false        # Log agent 활성화 설정 [true | false ]
+  tolerations: []       # 배포할 워커 노드에 taint가 설정되어 있을 경우 toleration 설정을 추가합니다.
+  imgPolicy: 'Always'   # agent의 Image Policy를 설정합니다. [Always | IfNotPresent | Never]
+  imgVersion: 'latest'  # agent의 Image 태그를 설정합니다.
+  logLevel: 'INFO'      # agent에서 남기는 log level을 설정합니다. [debug > info > warn > error > panic > fatal]
+  resources:            # agent의 resource를 설정합니다. 너무 작게할 경우 정상동작을 못할 수 있습니다.
     requests:
       cpu: 100m
       memory: 512Mi
     limits:
       cpu: 1
       memory: 2G
+  environment:          # 로그 수집 환경 [kubernetes | docker | etc] (기본 설정값: etc)
   collect:
-    - paths:                                   # 수집할 로그의 경로를 입력합니다.
-        - /var/log/containers/postgres.log
-      exclude_paths: []                        # 수집 대상에서 제외할 경로를 입력합니다.
-      keywords: []                             # 지정된 키워드가 포환된 로그만 수집하도록 설정합니다.
-      tag: datasaker                           # 수집할 로그 데이터에 태그 정보를 추가합니다.
-      service:                                 # 수집할 로그를 분류하기 위해 수집 대상의 서비스의 정보를 입력합니다.
-        name: user-custom-service-name         # 서비스 이름 정보 (기본 설정값: default) 
-        kind: user-custom-service-kind         # 서비스 종류 정보
-      source:                                  # 수집 대상의 정보
-        type: database                         # 수집 대상의 타입을 입력합니다. [database | app | syslog | etc] (기본 설정값: etc)
-        kind: postgres                         # 수집 대상의 application 개발 언어 및 database 종류를 입력합니다. [postgres | mysql | java | etc] (기본 설정값: etc)
-        address: 0.0.0.0:5432                  # 수집 대상 database 주소를 입력합니다.
+    - paths: []         # (*) 로그 수집 경로
+      exclude_paths: [] # 로그 수집 경로 중 제외시키고자 하는 로그 경로
+      keywords: []      # 로그 수집 키워드 (키워드가 포함된 로그만 수집)
+      tag:              # 사용자 설정 태그
+      service:
+        name:           # 서비스 이름  (기본 설정값: default)
+        category:       # 서비스 분류  [app, database, syslog, etc] (기본 설정값: etc)
+        type:           # 서비스 소스 타입 [postgres, mysql, java] (기본 설정값: etc)
+        address:        # 사용자 설정 - 데이터베이스 host 및 port 정보 (type이 database 인 경우 작성)
 ```
