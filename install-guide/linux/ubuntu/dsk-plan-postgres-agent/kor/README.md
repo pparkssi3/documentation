@@ -1,4 +1,4 @@
-# Ubuntu 환경에 DataSaker Plan Postgres agent 설치하기
+# Ubuntu 환경에 DataSaker Plan Postgres agent 설치하기 (Beta)
 `plan-postgres-agent`는 데이터베이스의 `active session`을 실시간으로 수집합니다.\
 이를 통해 데이터베이스의 슬로우 쿼리에 대한 정보를 수집할 수 있습니다.\
 슬로우 쿼리를 탐지하여 인덱스 생성, 쿼리 최적화 등의 방법으로 데이터베이스 성능을 개선할 수 있습니다.\

@@ -1,4 +1,4 @@
-# Ubuntu 환경에 DataSaker Elasticsearch agent 설치하기
+# Ubuntu 환경에 DataSaker Elasticsearch agent 설치하기 (Beta)
 `Elasticsearch agent`는 elasticsearch 상태 정보를 수집합니다.
 
 # DataSaker 선행 작업을 진행하였나요?
