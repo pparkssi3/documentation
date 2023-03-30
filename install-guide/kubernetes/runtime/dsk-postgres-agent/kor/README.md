@@ -19,6 +19,12 @@
 현재 Kubernetes 환경에 `DataSaker`의 선행 작업이 진행되지 않으셨다면 `DataSaker` 선행 작업을 먼저 진행하여 주시기 바랍니다. [DataSaker 선행 작업](${MANUAL_KUBERNETES_KR})
 
 # Postgres agent 설치하기
+## 주의
+현재 `postgres-agent`는 `postgresql` 14버전 이상에서만 동작하고 있습니다.\
+버전을 확인 부탁드립니다.\
+관제하려는 데이터베이스 `pg_stat_statements` 모듈의 활성화 된 상태인지 확인 부탁드립니다.\
+[pg_stat_statements 참조사이트](https://www.postgresql.org/docs/14/pgstatstatements.html)
+
 ## 1. Postgres agent 설정값 등록
 ```shell
 cat << EOF >> ~/datasaker/config.yaml
