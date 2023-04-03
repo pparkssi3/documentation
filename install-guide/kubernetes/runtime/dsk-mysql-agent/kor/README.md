@@ -29,7 +29,7 @@
 |mysqlAgents.list[].targetPort|MySQL을 target port를 입력합니다.|
 |mysqlAgents.list[].database|MySQL Database명을 입력합니다.|
 |mysqlAgents.list[].user|MySQL user 아이디를 입력합니다.|
-|mysqlAgents.list[].pass|MySQL user 드패스워드를 입력합니다.|
+|mysqlAgents.list[].pass|MySQL user 패스워드를 입력합니다.|
 
 ```shell
 cat << EOF >> ~/datasaker/config.yaml
