@@ -19,7 +19,7 @@
 `Log agent`의 설정 값의 의미와 기본 설정값은 다음과 같습니다. 사용자마다 에이전트 설정에 대해 다른 요구사항이 있습니다. 따라서 에이전트 설정을 사용자 설정에 맞게 조정해야 합니다. 최적의 결과를 위해 에이전트 설정을 조정하세요.
 "~/datasaker/config.yaml"에서 해당 값을 추가하거나 수정하세요.
 
-| **Settings**                         | **Description**                                              | **Default** | **Required** |
+|             **Settings**       |                           **Description**                                   | **Default** | **Required** |
 |:-------------------------------------|:-------------------------------------------------------------|:-----------:|:------------:|
 | `logAgent.collect.paths[]`           | 로그 수집 경로 (예시 : '/var/log/containers/*nginx*.log')            |     N/A     |    **✓**     |
 | `logAgent.collect.exclude_paths[]`   | 로그 수집 경로 중 제외시키고자 하는 로그 경로                                   |     N/A     |              |
