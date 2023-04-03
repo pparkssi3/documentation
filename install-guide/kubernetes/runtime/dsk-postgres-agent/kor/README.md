@@ -3,6 +3,18 @@
 이를 통해 데이터베이스의 성능 지표, 리소스 사용량, 슬로우 쿼리 등 다양한 정보를 수집할 수 있습니다.\
 고객의 요구사항에 따라 `plan-postgres-agent`는 `on/off` 형태로 사용 할 수 있습니다.
 
+## postgres version
+|version|support|
+|---|---|
+|postgres 15|X|
+|postgres 14|O|
+|postgres 13|X|
+|postgres 12|X|
+|postgres 11|X|
+|postgres 10|X|
+|postgres 9|X|
+|postgres 8|X|
+
 ## postgres agent
 `postgres agent`는 데이터베이스의 상태를 실시간으로 수집합니다.\
 이를 통해 데이터베이스의 성능 지표, 리소스 사용량 등 다양한 정보를 수집할 수 있습니다.\
