@@ -30,41 +30,6 @@ helm upgrade datasaker datasaker/agent-helm -n datasaker \
   -f ~/datasaker/config.yaml
 ```
 
-# Base agent 설정하기
-Base agent의 설정 값의 의미와 default값은 다음과 같습니다. 사용자마다 에이전트 설정에 대해 다른 요구사항이 있습니다. 따라서 에이전트 설정을 사용자 설정에 맞게 조정해야 합니다. 최적의 결과를 위해 에이전트 설정을 조정하세요.
-"~/datasaker/config.yaml"에서 해당 값을 추가하거나 수정하세요.
-
-```yaml
-baseAgent:
-  enabled: false          # Base agent를 활성화를 설정합니다.
-  enableMaster: true      # 기본적으로 마스터 노드의 정보를 수집합니다.
-  tolerations: []         # 워커 노드에 taint가 설정되어 있을 경우 taint를 추가합니다.
-  nodeAgent:              # 노드의 정보를 수집하는 agent입니다.
-    imgPolicy: 'Always'   # agent의 Image Policy를 설정합니다. [Always, IfNotPresent, Never]
-    imgVersion: 'latest'  # agent의 Image Version를 설정합니다.
-    logLevel: 'INFO'      # agent의 log level을 설정합니다. [debug > info > warn > error > panic > fatal]
-    listenPort: 19110     # agent가 사용하는 port를 설정합니다.
-    resources:            # agent의 resource를 설정합니다. 너무 작게할 경우 정상동작을 못할 수 있습니다.
-      requests:
-        cpu: 100m
-        memory: 512Mi
-      limits:
-        cpu: 1000m
-        memory: 1000Mi
-  containerAgent:         # 컨테이너의 정보를 수집하는 agent입니다.
-    imgPolicy: 'Always'   # agent의 Image Policy를 설정합니다. [Always, IfNotPresent, Never]
-    imgVersion: 'latest'  # agent의 Image Version를 설정합니다.
-    logLevel: 'INFO'      # agent의 log level을 설정합니다. [debug > info > warn > error > panic > fatal]
-    listenPort: 14194     # agent가 사용하는 port를 설정합니다.
-    resources:            # agent의 resource를 설정합니다. 너무 작게할 경우 정상동작을 못할 수 있습니다.
-      requests:
-        cpu: 100m
-        memory: 512Mi
-      limits:
-        cpu: 1000m
-        memory: 1000Mi
-```
-
 # 트러블슈팅
 
 ## 포트 사용 이슈
