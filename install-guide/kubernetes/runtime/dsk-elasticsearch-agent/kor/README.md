@@ -6,6 +6,7 @@ Elasticsearch agent는 DataSaker에서 elasitcsearch 정보를 수집하는 agen
 
 # Elasticsearch agent 설치하기
 ## 1. Elasticsearch agent 설정값 등록
+elasticsearchAgent.list[].uri에 elasticsearch addresss정보를 반드시 등록해주세요
 ```shell
 cat << EOF >> ~/datasaker/config.yaml
 
