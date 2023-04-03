@@ -4,6 +4,18 @@
 슬로우 쿼리를 탐지하여 인덱스 생성, 쿼리 최적화 등의 방법으로 데이터베이스 성능을 개선할 수 있습니다.\
 고객의 요구사항에 맞게 에이전트 설정을 조정하여 최적의 결과를 제공해 드립니다.
 
+## postgres version
+|version|support|
+|---|---|
+|postgres 15|X|
+|postgres 14|O|
+|postgres 13|X|
+|postgres 12|X|
+|postgres 11|X|
+|postgres 10|X|
+|postgres 9|X|
+|postgres 8|X|
+
 # DataSaker 선행 작업을 진행하였나요?
 현재 Ubuntu 환경에서는 `DataSaker`의 선행 작업이 진행되지 않으셨다면 `DataSaker` 선행 작업을 먼저 진행하여 주시기 바랍니다. [DataSaker 선행 작업](${MANUAL_UBUNTU_KR})
 
