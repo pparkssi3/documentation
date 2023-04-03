@@ -19,19 +19,17 @@
 `Log agent`의 설정 값의 의미와 기본 설정값은 다음과 같습니다. 사용자마다 에이전트 설정에 대해 다른 요구사항이 있습니다. 따라서 에이전트 설정을 사용자 설정에 맞게 조정해야 합니다. 최적의 결과를 위해 에이전트 설정을 조정하세요.
 "~/datasaker/config.yaml"에서 해당 값을 추가하거나 수정하세요.
 
-|            **Settings**             | **Description**                                              | **Default** | **Required** |
-|:-----------------------------------:|:-------------------------------------------------------------|:-----------:|:------------:|
-|     `logAgent.collect.paths[]`      | 로그 수집 경로                                                     |     N/A     |    **✓**     |
-| `logAgent.collect.exclude_paths[]`  | 로그 수집 경로 중 제외시키고자 하는 로그 경로                                   |     N/A     |              |
-|     `logAgent.collect.keywords`     | 로그 수집 키워드 (키워드가 포함된 로그만 수집)                                  |     N/A     |              |
-|       `logAgent.collect.tag`        | 사용자 설정 태그                                                    |     N/A     |              |
-|   `logAgent.collect.service.name`   | 서비스 이름                                                       |  `default`  |              |
-| `logAgent.collect.service.category` | 서비스 분류 [`app`, `database`, `syslog`, `etc`]                  |    `etc`    |              |
-|   `logAgent.collect.service.type`   | 서비스 소스 타입 [`postgres`, `mysql`, `java`]                      |    `etc`    |              |
-| `logAgent.collect.service.address`  | 사용자 설정 - 데이터베이스 host 및 port 정보  (category 가 database인 경우 설정) |     N/A     |      ⚠️      |
+| **Settings**                         | **Description**                                              | **Default** | **Required** |
+|:-------------------------------------|:-------------------------------------------------------------|:-----------:|:------------:|
+| `logAgent.collect.paths[]`           | 로그 수집 경로 (예시 : '/var/log/containers/*nginx*.log')            |     N/A     |    **✓**     |
+| `logAgent.collect.exclude_paths[]`   | 로그 수집 경로 중 제외시키고자 하는 로그 경로                                   |     N/A     |              |
+| `logAgent.collect.keywords`          | 로그 수집 키워드 (키워드가 포함된 로그만 수집)                                  |     N/A     |              |
+| `logAgent.collect.tag`               | 사용자 설정 태그                                                    |     N/A     |              |
+| `logAgent.collect.service.name`      | 서비스 이름                                                       |  `default`  |              |
+| `logAgent.collect.service.category`  | 서비스 분류 [`app`, `database`, `syslog`, `etc`]                  |    `etc`    |              |
+| `logAgent.collect.service.type`      | 서비스 소스 타입 [`postgres`, `mysql`, `java`]                      |    `etc`    |              |
+| `logAgent.collect.service.address`   | 사용자 설정 - 데이터베이스 host 및 port 정보  (category 가 database인 경우 설정) |     N/A     |      ⚠️      |
 
-
-로그 에이전트 수집 설정의 예시입니다.
 
 ```shell
 cat << EOF >> ~/datasaker/config.yaml
@@ -42,7 +40,7 @@ logAgent:
   environment: kubernetes
   collect:
     - paths:
-      - '/var/log/containers/*.log'
+      - '/var/log/containers/*{앱이름}*.log'
       service:
         name: MY_SERVICE_NAME
         category: APP
