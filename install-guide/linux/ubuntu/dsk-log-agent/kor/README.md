@@ -19,7 +19,7 @@
 ```shell
 curl -fsSL -o installer.sh https://dsk-agent-s3.s3.ap-northeast-2.amazonaws.com/dsk-agent-s3/public/dsk-log-agent-install.sh
 chmod 700 installer.sh
-sudo ./installer.sh
+sudo ./installer.sh dsk-log-agent
 ```
 
 ## 2. agent-config 설정
