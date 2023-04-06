@@ -19,16 +19,16 @@
 `Log agent`의 설정 값의 의미와 기본 설정값은 다음과 같습니다. 사용자마다 에이전트 설정에 대해 다른 요구사항이 있습니다. 따라서 에이전트 설정을 사용자 설정에 맞게 조정해야 합니다. 최적의 결과를 위해 에이전트 설정을 조정하세요.
 "~/datasaker/config.yaml"에서 해당 값을 추가하거나 수정하세요.
 
-|             **Settings**       |                           **Description**                                   | **Default** | **Required** |
-|:-------------------------------------|:-------------------------------------------------------------|:-----------:|:------------:|
-| `logAgent.collect.paths[]`           | 로그 수집 경로 (예시 : '/var/log/containers/*nginx*.log')            |     N/A     |    **✓**     |
-| `logAgent.collect.exclude_paths[]`   | 로그 수집 경로 중 제외시키고자 하는 로그 경로                                   |     N/A     |              |
-| `logAgent.collect.keywords`          | 로그 수집 키워드 (키워드가 포함된 로그만 수집)                                  |     N/A     |              |
-| `logAgent.collect.tag`               | 사용자 설정 태그                                                    |     N/A     |              |
-| `logAgent.collect.service.name`      | 서비스 이름                                                       |  `default`  |              |
-| `logAgent.collect.service.category`  | 서비스 분류 [`app`, `database`, `syslog`, `etc`]                  |    `etc`    |              |
-| `logAgent.collect.service.type`      | 서비스 소스 타입 [`postgres`, `mysql`, `java`]                      |    `etc`    |              |
-| `logAgent.collect.service.address`   | 사용자 설정 - 데이터베이스 host 및 port 정보  (category 가 database인 경우 설정) |     N/A     |      ⚠️      |
+| **Settings**                        | **Description**                                              | **Default** | **Required** |
+|:------------------------------------|:-------------------------------------------------------------|:-----------:|:------------:|
+| `logAgent.collect.paths[]`          | 로그 수집 경로 (예시 : '/var/log/containers/*nginx*.log')            |     N/A     |    **✓**     |
+| `logAgent.collect.exclude_paths[]`  | 로그 수집 경로 중 제외시키고자 하는 로그 경로                                   |     N/A     |              |
+| `logAgent.collect.keywords`         | 로그 수집 키워드 (키워드가 포함된 로그만 수집)                                  |     N/A     |              |
+| `logAgent.collect.tag`              | 사용자 설정 태그                                                    |     N/A     |              |
+| `logAgent.collect.service.name`     | 서비스 이름                                                       |  `default`  |              |
+| `logAgent.collect.service.category` | 서비스 분류 [`app`, `database`, `syslog`, `etc`]                  |    `etc`    |              |
+| `logAgent.collect.service.type`     | 서비스 소스 타입 [`postgres`, `mysql`, `java`]                      |    `etc`    |              |
+| `logAgent.collect.service.address`  | 사용자 설정 - 데이터베이스 host 및 port 정보  (category 가 database인 경우 설정) |     N/A     |      ⚠️      |
 
 
 ```shell
@@ -64,7 +64,18 @@ collect:
       - /var/log/containers/postgres.log
 ```
 
-**[주의]** 다음과 같이 특정 경로의 모든 로그를 수집하도록 설정할 경우 `Log agent`에 많은 부하가 발생할 수 있습니다. (`/var/log/containers/*`)
+### **[주의]** 
+
+1. 다음과 같이 특정 경로의 모든 로그를 수집하도록 설정할 경우 `Log agent`에 많은 부하가 발생할 수 있습니다. (`/var/log/containers/*.log`) 수집 로그 파일을 개별적으로 작성하는 것을 권장합니다.(/var/log/containers/sampleApp.log)
+2. 로그 파일 이외의 파일이 경로에 설정되지 않도록 설정하십시오. 로그 수집 경로의 파일을 지정하거나 그 이외의 파일을 제외시키십시오.
+```yaml
+collect:
+  - paths:
+      - /var/log/*/postgres.log
+    exclude_paths:
+      - /var/log/*/*.gz
+      - /var/log/*/*.zip
+```
 
 ## 2. 키워드(`keywords`) 설정에 유의하십시오.
 
@@ -84,4 +95,35 @@ service:
   address: 0.0.0.0:5432
 ```
 
-[//]: # (### 4. 권장 로그 설정 - 각 source kind 별 설정 방법)
+# 수집 로그 대상 별 설정 가이드
+
+수집 대상의 로그가 multiline 으로 수집될 경우, 각 대상 별 로그 설정이 요구됩니다.
+
+## Database 로그 수집 설정
+
+### Postgres  
+
+Postgres 로그를 수집하기 위해서는 `/etc/postgresql/<VERSION>/main/postgresql.conf` 파일에 다음과 같은 설정이 필요합니다.
+
+```shell
+logging_collector = on
+log_file_mode = 0644
+log_line_prefix= '%m [%p] %q%u@%d [%c] [%x] '
+```
+
+⚠️: Postgres 쿼리 로그 수집과 관련해서 쿼리에 민감 정보가 포함되어 있다면 해당 설정을 `none`으로 설정하는 것을 권장합니다.
+```shell
+log_statement = 'none' # none, ddl, mod, all
+```
+
+[//]: # (### MySQL)
+
+[//]: # ()
+[//]: # (MySQL 로그 수집)
+
+[//]: # ()
+[//]: # (## Application 로그 수집 설정)
+
+[//]: # ()
+[//]: # (### Java)
+
