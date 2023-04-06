@@ -6,7 +6,7 @@
 고객의 요구사항에 맞게 에이전트 설정을 조정하여 최적의 결과를 제공해 드립니다.
 
 # DataSaker 선행 작업을 진행하였나요?
-현재 Kubernetes 환경에 `DataSaker`의 선행 작업이 진행되지 않으셨다면 `DataSaker` 선행 작업을 먼저 진행하여 주시기 바랍니다. [DataSaker 선행 작업](${MANUAL_KUBERNETES_KR})
+현재 Kubernetes 환경에 `DataSaker`의 선행 작업이 진행되지 않으셨다면 `DataSaker` 선행 작업을 먼저 진행하여 주시기 바랍니다. <span style='background-color:#ffdce0'>[DataSaker 선행 작업](${MANUAL_KUBERNETES_KR})</span>
 
 # Log agent 설치하기
 기본적으로, `Log agent`는 쿠버네티스 환경에서 데몬셋(daemonset)으로 배포됩니다.
@@ -14,15 +14,14 @@
 
 ## 1. Log agent 설정 값 등록
 
-`Log agent`가 정상적으로 동작하기 위해서 반드시 _**collect.paths**_ 에 **반드시** 하나 이상의 로그 수집 경로를 설정해야 합니다.
+`Log agent`가 정상적으로 동작하기 위해서 반드시 _**collect.workloads**_ 에 **반드시** 하나 이상의 로그를 수집할 워크로드를 설정해야 합니다.
 
 `Log agent`의 설정 값의 의미와 기본 설정값은 다음과 같습니다. 사용자마다 에이전트 설정에 대해 다른 요구사항이 있습니다. 따라서 에이전트 설정을 사용자 설정에 맞게 조정해야 합니다. 최적의 결과를 위해 에이전트 설정을 조정하세요.
 "~/datasaker/config.yaml"에서 해당 값을 추가하거나 수정하세요.
 
 | **Settings**                        | **Description**                                              | **Default** | **Required** |
 |:------------------------------------|:-------------------------------------------------------------|:-----------:|:------------:|
-| `logAgent.collect.paths[]`          | 로그 수집 경로 (예시 : '/var/log/containers/*nginx*.log')            |     N/A     |    **✓**     |
-| `logAgent.collect.exclude_paths[]`  | 로그 수집 경로 중 제외시키고자 하는 로그 경로                                   |     N/A     |              |
+| `logAgent.collect.workloads[]`      | 로그 수집 대상 워크로드 이름 (예시 : 'nginx')                              |     N/A     |    **✓**     |
 | `logAgent.collect.keywords`         | 로그 수집 키워드 (키워드가 포함된 로그만 수집)                                  |     N/A     |              |
 | `logAgent.collect.tag`              | 사용자 설정 태그                                                    |     N/A     |              |
 | `logAgent.collect.service.name`     | 서비스 이름                                                       |  `default`  |              |
@@ -37,10 +36,9 @@ cat << EOF >> ~/datasaker/config.yaml
 logAgent:
   enabled: true
   logLevel: 'INFO'
-  environment: kubernetes
   collect:
-    - paths:
-      - '/var/log/containers/*{앱이름}*.log'
+    - workloads:
+      - '{WORKLOAD_NAME}'
       service:
         name: MY_SERVICE_NAME
         category: APP
@@ -55,27 +53,21 @@ helm upgrade datasaker datasaker/agent-helm -n datasaker -f ~/datasaker/config.y
 
 # Log agent 사용 방법
 
-## 1. 반드시 하나 이상의 로그 수집 경로(`path`)를 입력하십시오.
+## 1. <span style='background-color:red'>반드시 하나 이상의 로그 수집 대상 워크로드 이름(`workloads`)을 입력하십시오.</span>
 
-로그 수집 경로를 작성하지 않을 경우, `Log agent`가 정상적으로 동작하지 않을 수 있습니다.
+워크로드를 작성하지 않을 경우, `Log agent`가 정상적으로 동작하지 않을 수 있습니다.
 ```yaml
 collect:
-  - paths: # [필수] 수집할 로그의 경로를 입력합니다.
-      - /var/log/containers/postgres.log
+  - workloads: # [필수] 수집할 워크로드의 이름을 입력합니다.
+      - postgres
 ```
 
-### **[주의]** 
+### [ **Workloads** 작성 가이드 ]
 
-1. 다음과 같이 특정 경로의 모든 로그를 수집하도록 설정할 경우 `Log agent`에 많은 부하가 발생할 수 있습니다. (`/var/log/containers/*.log`) 수집 로그 파일을 개별적으로 작성하는 것을 권장합니다.(/var/log/containers/sampleApp.log)
-2. 로그 파일 이외의 파일이 경로에 설정되지 않도록 설정하십시오. 로그 수집 경로의 파일을 지정하거나 그 이외의 파일을 제외시키십시오.
-```yaml
-collect:
-  - paths:
-      - /var/log/*/postgres.log
-    exclude_paths:
-      - /var/log/*/*.gz
-      - /var/log/*/*.zip
-```
+워크로드는 쿠버네티스에서 구동되는 애플리케이션을 의미합니다. (워크로드가 단일 컴포넌트이거나 함께 작동하는 여러 컴포넌트이든 관계없이, 쿠버네티스에서는 워크로드를 일련의 Pod 집합 내에서 실행됩니다.)
+쿠버네티스에는 다음과 같이 여러 가지 빌트인(built-in) 워크로드 리소스를 제공합니다. (Deployment, Replicaset, StatefulSet, DaemonSet)
+
+`collect.workloads` 에는 수집하고자 하는 워크로드의 이름을 작성하면 해당 로그 파일을 수집합니다. (/var/log/containers/*WORKLOAD_NAME*.log)
 
 ## 2. 키워드(`keywords`) 설정에 유의하십시오.
 
@@ -126,4 +118,3 @@ log_statement = 'none' # none, ddl, mod, all
 
 [//]: # ()
 [//]: # (### Java)
-

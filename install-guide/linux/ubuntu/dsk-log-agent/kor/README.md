@@ -6,7 +6,7 @@
 고객의 요구사항에 맞게 에이전트 설정을 조정하여 최적의 결과를 제공해 드립니다.
 
 # DataSaker 선행 작업을 진행하였나요?
-현재 Ubuntu 환경에서는 `DataSaker`의 선행 작업이 진행되지 않으셨다면 `DataSaker` 선행 작업을 먼저 진행하여 주시기 바랍니다. [DataSaker 선행 작업](${MANUAL_UBUNTU_KR})
+현재 Ubuntu 환경에서는 `DataSaker`의 선행 작업이 진행되지 않으셨다면 `DataSaker` 선행 작업을 먼저 진행하여 주시기 바랍니다. <span style='background-color:#ffdce0'>[DataSaker 선행 작업](${MANUAL_UBUNTU_KR})</span>
 
 # Log agent 설치하기
 `Log agent`는 현재 Ubuntu 18.04.6 LTS (Bionic Beaver) 환경에서만 지원하고 있습니다.
@@ -24,16 +24,14 @@ sudo ./installer.sh dsk-log-agent
 
 ## 2. agent-config 설정
 
-`/etc/datasaker/dsk-log-agent/agent-config.yml` 경로에 agent-config 파일을 다음과 같이 생성합니다. (*)가 붙은 곳은 반듯이 입력해야 됩니다.
+`/etc/datasaker/dsk-log-agent/agent-config.yml` 경로에 agent-config 파일을 다음과 같이 생성합니다.
 
 ```yaml
 agent:
   metadata:
     agent_name:         # 에이전트 이름
-    cluster_id:         # 클러스터 정보
-  environment:          # 로그 수집 환경 [kubernetes | docker | etc] (기본 설정값: etc)
   collect:
-    - paths: []         # (*) 로그 수집 경로
+    - paths: []         # (필수) 로그 수집 경로
       exclude_paths: [] # 로그 수집 경로 중 제외시키고자 하는 로그 경로
       keywords: []      # 로그 수집 키워드 (키워드가 포함된 로그만 수집)
       tag:              # 사용자 설정 태그
@@ -44,15 +42,21 @@ agent:
         address:        # 사용자 설정 - 데이터베이스 host 및 port 정보 (type이 database 인 경우 작성)
 ```
 
+### **[주의]**
+
+1. <span style='background-color:red'>반드시 하나 이상의 로그 수집 경로(`path`)를 입력하십시오.</span> 로그 수집 경로를 작성하지 않을 경우, `Log agent`가 정상적으로 동작하지 않을 수 있습니다.
+2. 다음과 같이 특정 경로의 모든 로그를 수집하도록 설정할 경우 로그 에이전트에 많은 부하가 발생할 수 있습니다. (`/var/log/*`) <span style='background-color:red'>수집 로그 파일을 개별적으로 작성하는 것을 권장합니다.</span>(`/var/log/containers/sampleApp.log`)
+3. <span style='background-color:red'>로그 파일 이외의 파일이 경로에 설정되지 않도록 설정하십시오.</span> 로그 수집 경로의 파일을 지정하거나 그 이외의 파일을 제외시키십시오. <span style='background-color:red'>로그 수집 설정에 포맷을 반드시 작성해주십시오.</span>(예시: `.log`)
+
 ## 3. 패키지 실행
 
 ```shell
 sudo systemctl enable dsk-log-agent --now
 ```
 
-> 주의사항
-> 1. 로그 수집을 위해 패키지 실행 전 에이전트 설정 파일을 구성해야 한다(`global-config.yml`, `config.conf`).
-> 2. 로그 에에전트는 기본적으로 fluentd를 사용하여 로그를 수집합니다. 이미 사용 중인 fluentd가 있는 경우 `DSK_FLUENTD_CMD` 환경변수를 설정하여 변경할 수 있습니다. 환경변수를 사용하여 실행할 경우 다음과 같이 실행하십시오. (`sudo -E dsk-log-agent start`)
+> 주의사항 </br>
+> - 로그 수집을 위해 패키지 실행 전 에이전트 설정 파일을 구성해야 합니다(`global-config.yml`, `config.conf`).</br>
+> - 로그 에에전트는 기본적으로 `fluentd`를 사용하여 로그를 수집합니다. 이미 사용 중인 `fluentd`가 있는 경우 `DSK_FLUENTD_CMD` 환경변수를 설정하여 변경할 수 있습니다. 환경변수를 사용하여 실행할 경우 다음과 같이 실행하십시오. (`sudo -E dsk-log-agent start`)
 
 
 ## 4. 패키지 실행 상태 확인
