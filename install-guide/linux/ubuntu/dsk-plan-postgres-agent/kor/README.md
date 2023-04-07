@@ -16,6 +16,7 @@
 |postgres 10|X|
 |postgres 9|X|
 |postgres 8|X|
+
 <br><br>
 
 # DataSaker 선행 작업을 진행하였나요?
