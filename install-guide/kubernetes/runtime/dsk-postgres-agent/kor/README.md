@@ -15,6 +15,7 @@
 |postgres 10|X|
 |postgres 9|X|
 |postgres 8|X|
+
 <br><br>
 
 # Agent 구성
