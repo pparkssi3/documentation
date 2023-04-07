@@ -8,6 +8,7 @@
 |version|support|
 |---|---|
 |MySQL 8.0.33|O|
+
 <br><br>
 
 # Agent 구성
