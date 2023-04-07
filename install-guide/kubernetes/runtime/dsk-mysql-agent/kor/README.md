@@ -2,7 +2,15 @@
 'MySQL agents'는 `mysql agent`와 `plan-mysql-agent`로 구성되어 있습니다.\
 이를 통해 데이터베이스의 성능 지표, 리소스 사용량, 슬로우 쿼리 등 다양한 정보를 수집할 수 있습니다.\
 고객의 요구사항에 따라 `plan-mysql-agent`는 `on/off` 형태로 사용 할 수 있습니다.
+<br><br>
 
+# Supported version
+|version|support|
+|---|---|
+|MySQL 8.0.33|O|
+<br><br>
+
+# Agent 구성
 ## mysql agent
 `mysql agent`는 데이터베이스의 상태를 실시간으로 수집합니다.\
 이를 통해 데이터베이스의 성능 지표, 리소스 사용량 등 다양한 정보를 수집할 수 있습니다.\
@@ -14,12 +22,29 @@
 이를 통해 데이터베이스의 슬로우 쿼리에 대한 정보를 수집할 수 있습니다.\
 슬로우 쿼리를 탐지하여 인덱스 생성, 쿼리 최적화 등의 방법으로 데이터베이스 성능을 개선할 수 있습니다.\
 고객의 요구사항에 맞게 에이전트 설정을 조정하여 최적의 결과를 제공해 드립니다.
+<br><br>
 
 # DataSaker 선행 작업을 진행하였나요?
 현재 Kubernetes 환경에 `DataSaker`의 선행 작업이 진행되지 않으셨다면 `DataSaker` 선행 작업을 먼저 진행하여 주시기 바랍니다. [DataSaker 선행 작업](${MANUAL_KUBERNETES_KR})
+<br><br>
 
-# Mysql agent 설치하기
-## 1. Mysql agent 설정값 등록
+# Mysql agent install
+## 1. MySQL 설정 변경
+관제하려는 데이터베이스 `performance_schema=ON` 모듈의 활성화 된 상태인지 확인 부탁드립니다.\
+[performance_schema 참조사이트](https://dev.mysql.com/doc/refman/8.0/en/performance-schema-quick-start.html)
+
+## 2. MySQL User 권한 설정
+`MySQL agent`를 설치하기 위해서는 `MySQL User`에 권한을 부여해야 합니다.\
+`MySQL user`의 권한을 확인하고, 권한이 없다면 권한을 부여해주세요.\
+필요한 User 권한은 다음과 같습니다.
+- `SELECT`
+- `UPDATE`
+- `DELETE`
+- `INSERT`
+
+[MySQL user 권한 참조사이트](https://dev.mysql.com/doc/refman/8.0/en/grant.html)
+
+## 3. Mysql agent 설정값 등록
 ### 필수입력 항목
 필수입력 항목은 다음과 같습니다. MySQL 설정에 맞게 값을 넣어주세요
 |Entity|Describe|
@@ -31,25 +56,26 @@
 |mysqlAgents.list[].user|MySQL user 아이디를 입력합니다.|
 |mysqlAgents.list[].pass|MySQL user 패스워드를 입력합니다.|
 
+### 옵션입력
 ```shell
 cat << EOF >> ~/datasaker/config.yaml
 
 mysqlAgents:
   list:
     - name: 'my-mysql'
-      tolerations: []
       imgPolicy: 'Always'
       imgVersion: 'latest'
       logLevel: 'INFO'
-      mysqlPlan: true
+      listenPort: 19104
+      tolerations: []
       targetAddr: '127.0.0.1'
       targetPort: '3306'
       database: "database"
       user: 'user'
       pass: "pass"
-      listenPort: 19104
       exporterArgs: []
       extraArgs: []
+      mysqlPlan: true
       explain:
         scrape_interval: 5s
         scrape_timeout: 5s
@@ -68,11 +94,12 @@ mysqlAgents:
 EOF
 ```
 
-## 2. Mysql agent 설치
+## 4. Mysql agent 활성화
 ```shell
 helm upgrade datasaker datasaker/agent-helm -n datasaker \
   -f ~/datasaker/config.yaml
 ```
+<br><br>
 
 # exporterArgs value
 `DataSaker MySQL 에이전트`의 인자 목록입니다.
@@ -110,6 +137,7 @@ helm upgrade datasaker datasaker/agent-helm -n datasaker \
 | collect.perf_schema.replication_group_members             | 5.7           | Collect metrics from performance_schema.replication_group_members.                    |
 | collect.perf_schema.replication_group_member_stats        | 5.7           | Collect metrics from performance_schema.replication_group_member_stats.               |
 | collect.perf_schema.replication_applier_status_by_worker  | 5.7           | Collect metrics from performance_schema.replication_applier_status_by_worker.         |
+<br><br>
 
 # optional collector flags
 
