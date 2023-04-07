@@ -10,6 +10,7 @@
 |version|support|
 |---|---|
 |MySQL 8.0.33|O|
+
 <br><br>
 
 # DataSaker 선행 작업을 진행하였나요?
