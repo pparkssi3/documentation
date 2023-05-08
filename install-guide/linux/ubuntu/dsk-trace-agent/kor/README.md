@@ -97,15 +97,6 @@ agent:
 #### `collector_config`
 
 ```yaml
-# collector 실행 명령어
-[ collector_command: <string> | default = "/etc/dsk-trace-agent/otelcol/dsk-otelcol --config /etc/dsk-trace-agent/otelcol/run-config.yaml" ]
-
-# collector 최대 재시작 횟수
-[ restart_max_count: <int> | default = 3 ]
-
-# collector 재시작 간격
-[ restart_interval: <int> | default = 5 ]
-
 # collector에 적용되는 샘플링 비율
 # 0일때 run-config에 적힌 sampling rate가 적용됨 (10)
 # 100 이상일 때 모든 데이터가 수집됨
@@ -115,10 +106,6 @@ agent:
 #### `reciever_config`
 
 ```yaml
-# datagate로 전송할 데이터의 최대 크기, 단위는 byte
-# batch_size가 transport_size보다 크면 데이터를 슬라이싱 하여 보냄
-[ transport_size: <int> | default = 1048576 ]
-
 # collector로부터 데이터를 받을 포트 번호
 [ listen_port: <uint16> | default = 14251 ]
 
@@ -134,10 +121,8 @@ agent:
     cluster_id: seoul-region-a-cluster # UI에서 보여지는 Cluster 이름
   option:
     collector_config: 
-      collector_command: "/etc/datasaker/dsk-trace-agent/otelcol/dsk-otelcol --config /etc/datasaker/dsk-trace-agent/otelcol/run-config.yaml"
-# collector_command = default 값으로 설정되어 있음.
+      sampling_rate: 1
 ```
-
 
 # Trace agent 제거하기
 
