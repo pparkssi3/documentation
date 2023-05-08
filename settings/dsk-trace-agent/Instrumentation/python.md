@@ -33,6 +33,8 @@ opentelemetry-bootstrap -a install
 Application을 실행할 때, 다음과 같이 시스템 프로퍼티를 추가합니다.
 
 ```bash
+export OTEL_RESOURCE_ATTRIBUTES
+
 opentelemetry-instrument \
     --traces_exporter otlp \
     --metrics_exporter none \
@@ -47,6 +49,7 @@ opentelemetry-instrument \
 환경변수를 이용하여 실행할 수 있습니다.
 
 ```bash
+OTEL_RESOURCE_ATTRIBUTES=dsk_host_key=$(cat /var/datasaker/host_key) \
 OTEL_SERVICE_NAME=your-service-name \
 OTEL_TRACES_EXPORTER=otlp \
 OTEL_METRICS_EXPORTER=none \
@@ -92,6 +95,7 @@ ENTRYPOINT ["opentelemetry-instrument", "--traces_exporter=otlp", "--metrics_exp
 ```bash
 docker run my-python-application \
   -e OTEL_SERVICE_NAME=your-service-name \
+  -e OTEL_RESOURCE_ATTRIBUTES=dsk_host_key=$(cat /var/datasaker/host_key) \
   -e OTEL_TRACES_EXPORTER=otlp \
   -e OTEL_METRICS_EXPORTER=none \ 
   -e OTEL_LOGS_EXPORTER=none \ 

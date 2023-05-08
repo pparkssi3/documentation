@@ -27,6 +27,7 @@ wget https://github.com/open-telemetry/opentelemetry-java-instrumentation/releas
 java -javaagent:path/to/opentelemetry-javaagent.jar \
      -Dotel.exporter.otlp.traces.endpoint=localhost:4317 \
      -Dotel.service.name=your-service-name \
+     -Dotel.resource.attributes=dsk.host.key=$(cat /var/datasaker/host_key) \
      -Dotel.metrics.exporter=none \
      -Dotel.logs.exporter=none \
      -jar myapp.jar
@@ -47,6 +48,7 @@ Docker 네트워크 설정을 통해 Trace Agent로 접근할 수 있도록 설�
         -e OTEL_SERVICE_NAME=your-service-name \
         -e OTEL_METRICS_EXPORTER=none \
         -e OTEL_LOGS_EXPORTER=none \
+        -e OTEL_RESOURCE_ATTRIBUTES=dsk_host_key=$(cat /var/datasaker/host_key) \
         --network <network-name> \
         -d
 ```
@@ -63,7 +65,8 @@ Docker 네트워크 설정을 통해 Trace Agent로 접근할 수 있도록 설�
     "-Dotel.service.name=your-service-name", \
     "-Dotel.metrics.exporter=none", \
     "-Dotel.logs.exporter=none", \
-    "-Dotel.exporter.jaeger.endpoint=http://dsk-trace-agent-service:14250",\
+    "-Dotel.resource.attributes=dsk.host.key=$(cat /var/datasaker/host_key)", \
+    "-Dotel.exporter.otlp.traces.endpoint=http://dsk-trace-agent-service:4317",\
     "-jar", "myapp.jar"]
 ```
 
