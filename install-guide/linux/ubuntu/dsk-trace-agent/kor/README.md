@@ -62,7 +62,14 @@ sudo systemctl status dsk-trace-agent
 | 4317  | TCP      | otlp-grpc      |
 | 4318  | TCP      | otlp-http      |
 
+# Application에 Trace Agent 연동하기
+
+Trace agent를 이용하기 위해서는 먼저 SDK로 어플리케이션을 인스트루먼트 해야 합니다. 자세한 내용은 링크를 참고해주세요.
+[관련 문서 링크](https://github.com/datasaker/documentation/tree/main/settings/dsk-trace-agent/Instrumentation)
+
 # Trace agent 설정하기
+
+필요하다면 아래 문서를 참고하여 trace agent의 설정을 바꿀 수 있습니다.
 
 ## Trace agent 설정 값
 

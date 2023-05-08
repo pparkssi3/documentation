@@ -79,10 +79,10 @@ Node.js 애플리케이션을 실행하기 전에, `tracing.js` 또는 `tracing.
 
 ``` bash
 # javascript의 경우
-node --require './tracing.js' app.js
+OTEL_RESOURCE_ATTRIBUTES=dsk_host_key=$(cat /var/datasaker/host_key)  node --require './tracing.js' app.js
 
 # typescript의 경우
-ts-node --require './tracing.ts' app.ts
+OTEL_RESOURCE_ATTRIBUTES=dsk_host_key=$(cat /var/datasaker/host_key)  ts-node --require './tracing.ts' app.ts
 ```
 
 ## 3. 쿠버네티스 환경 변수 설정
