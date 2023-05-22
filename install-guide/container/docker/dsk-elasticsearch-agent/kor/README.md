@@ -1,46 +1,77 @@
-# Coming soon
+# 도커 환경에 DataSaker Elasticsearch agent 설치 하기
 
-<!--
-# 도커 환경에 에이전트 설치하기
+`Elasticsearch agent`는 DataSaker에서 elasitcsearch 정보를 수집하는 agent입니다.
 
-**데이터세이커 엘라스틱서치 에이전트**를 도커 환경에 설치하는 방법을 설명합니다.
+# DataSaker 선행 작업을 진행하였나요?
 
-1. 데이터세이커가 사용할 로컬 디렉터리 생성
+현재 Docker 환경에 `DataSaker`의 선행 작업이 진행되지 않으셨다면 `DataSaker` 선행 작업을 먼저 진행하여 주시기 바랍니다. [DataSaker 선행 작업](${MANUAL_DOCKER_KR})
+<!-- front 기능 추가 필요; MANUAL_DOCKER_KR -->
 
-   ```shell
-    mkdir -p /var/datasaker
-    chmod 777 /var/datasaker/ 
-   ```
+# Elasticsearch agent 설치하기
 
-2. 수집하고자 하는 엘라스틱서치 서버의 호스트, 포트 주소를 설정한다.
+## 1. Elasticsearch agent 설정값 등록
 
-   ```shell
-    export DSK_ES_URI=<protocol>://<user>:<password>@<host>:<port>
-   ```
-
-   예를 들어, localhost 9200 포트에 서비스중인 엘라스틱서치 서버를 수집하기 위해서는 다음과 같이 설정합니다.
+에이전트를 연결하기 위해서는 수집하고자 하는 Elasticsearch 서버의 호스트, 포트 주소를 에이전트에 설정해야 합니다.
 
    ```shell
-    export DSK_ES_URI=http://localhost:9200
+    DSK_ES_URI==http(s)://<user>:<password>@<host>:<port>
    ```
 
-3. 도커 명령어를 서버에 입력
+예를 들어, localhost 9200 포트에 서비스중인 Elasticsearch를 수집하기 위해서는 다음과 같이 설정할 수 있습니다.
 
    ```shell
-    docker run -d --name saker-elasticsearch-agent\
-    -v /var/datasaker/:/var/datasaker/\
-    -e DSK_GLOBAL_APIKEY=${VAR_GLOBAL_APIKEY}\
-    -e DSK_GLOBAL_GATEWAY_URL=${VAR_GLOBAL_GATEWAY_URL}\
-    -e DSK_GLOBAL_AGENTMANAGER_URL=${VAR_GLOBAL_AGENTMANAGER_URL}\
-    --restart=always\
-    nexus2.exem-oss.org/saas/dsk-elasticsearch-agent\
-    --es.uri=${DSK_ES_URI}\
-    --es.all\
-    --es.indices\
-    --es.indices_settings\
-    --es.indices_mappings\
-    --es.cluster_settings\
-    --es.shards\
-    --es.snapshots
+    DSK_ES_URI=http://localhost:9200
    ```
--->
+
+터미널에 다음 명령어를 입력하여 dsk-elasticsearch-agent 설정 파일을 생성합니다.
+
+```shell
+cd ~
+mkdir .datasaker
+DSK_ES_URI=http://localhost:9200
+cat << EOF > ~/.datasaker/elasticsearch-config.yml
+agent:
+  metadata:
+  # agent_name: my-dsk-node-agent
+  # cluster_id: my-cluster
+  option:
+    exporter_config:
+      command: "/etc/datasaker/target-exporter"
+      args:
+        - --es.uri=${DSK_ES_URI}
+        - --es.all
+        - --es.cluster_settings
+        - --es.indices_settings
+        - --es.indices_mappings
+        - --es.shards
+        - --es.snapshots
+    scrape_configs:
+      - job_name: dsk-elasticsearch-agent
+        url: localhost:19114
+        filtering_configs:
+          rule: drop
+EOF
+```
+
+## 2. Elasticsearch agent 설치
+
+1. 데이터세이커가 사용할 로컬 디렉터리를 생성합니다.
+
+   ```shell
+    sudo mkdir -p /var/datasaker
+    sudo chown -R datasaker:datasaker /var/datasaker/ 
+   ```
+
+2. 도커 명령어를 서버에 입력합니다.
+
+   ```shell
+   docker run -d --name dsk-elasticsearch-agent\
+      -v /var/datasaker/:/var/datasaker/\
+      -v ~/.datasaker/config.yml:/etc/datasaker/global-config.yml:ro\
+      -v ~/.datasaker/elasticsearch-config.yml:/etc/datasaker/dsk-elasticsearch-agent/agent-config.yml:ro\
+      -e DSK_CLUSTER_ID=${VAR_CLUSTER_ID} \
+      -e DSK_LOG_LEVEL=INFO\
+      -e DSK_SUB_KIND=elasticsearch-1\
+      --restart=always\
+      datasaker/dsk-elasticsearch-agent
+   ```

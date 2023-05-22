@@ -1,5 +1,6 @@
 # 쿠버네티스 환경에서 DataSaker Elasticsearch agent 설치하기
-Elasticsearch agent는 DataSaker에서 elasitcsearch 정보를 수집하는 agent입니다.
+
+`Elasticsearch agent`는 DataSaker에서 elasitcsearch 정보를 수집하는 agent입니다.
 
 # DataSaker 선행 작업을 진행하였나요?
 현재 Kubernetes 환경에 `DataSaker`의 선행 작업이 진행되지 않으셨다면 `DataSaker` 선행 작업을 먼저 진행하여 주시기 바랍니다. [DataSaker 선행 작업](${MANUAL_KUBERNETES_KR})
@@ -39,7 +40,6 @@ EOF
 ```shell
 helm upgrade datasaker datasaker/agent-helm -n datasaker \
   -f ~/datasaker/config.yaml
-```
-
+``
 
 더 자세한 정보가 필요하시면 다음 문서를 참고해주세요. [관련 문서](../../../../../settings/dsk-elasticsearch-agent/settings.md)

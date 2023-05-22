@@ -42,6 +42,18 @@ Docker 네트워크 설정을 통해 Trace Agent로 접근할 수 있도록 설�
 ```
 
 ``` bash
+     docker run -d --name dsk-trace-agent\
+       -v /var/datasaker/:/var/datasaker/\
+       -v ~/.datasaker/config.yml:/etc/datasaker/global-config.yml:ro\
+       -e DKS_LOG_LEVEL=info\
+       -p 4317:4317/tcp\
+       -p 4318:4318/tcp\
+       --restart=always\
+       --network <network-name>
+       datasaker/dsk-trace-agent
+```
+
+``` bash
     # 자바 어플리케이션 실행 예시
     docker run my-java-application \
         -e OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=localhost:4317 \
@@ -53,7 +65,7 @@ Docker 네트워크 설정을 통해 Trace Agent로 접근할 수 있도록 설�
         -d
 ```
 
-혹은 다음과 같이 시스템 프로퍼티를 추가합니다.
+혹은 다음과 같이 호스트 주소를 사용하여를 추가합니다.
 
 ``` dockerfile
     # Dockerfile 예시
@@ -66,7 +78,7 @@ Docker 네트워크 설정을 통해 Trace Agent로 접근할 수 있도록 설�
     "-Dotel.metrics.exporter=none", \
     "-Dotel.logs.exporter=none", \
     "-Dotel.resource.attributes=dsk.host.key=$(cat /var/datasaker/host_key)", \
-    "-Dotel.exporter.otlp.traces.endpoint=http://dsk-trace-agent-service:4317",\
+    "-Dotel.exporter.otlp.traces.endpoint=http://<host address>:<port>",\
     "-jar", "myapp.jar"]
 ```
 

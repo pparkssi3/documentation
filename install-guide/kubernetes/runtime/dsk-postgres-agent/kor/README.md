@@ -19,7 +19,7 @@
 <br><br>
 
 # Agent 구성
-Postgres agent는 `postgres agent`와 `plan-postgres agent`로 구성되어 있습니다.\
+Postgres agent는 `postgres agent`와 `plan-postgres agent`로 구성되어 있습니다.
 ## postgres agent
 `postgres agent`는 데이터베이스의 상태를 실시간으로 수집합니다.\
 이를 통해 데이터베이스의 성능 지표, 리소스 사용량 등 다양한 정보를 수집할 수 있습니다.\
@@ -37,7 +37,7 @@ Postgres agent는 `postgres agent`와 `plan-postgres agent`로 구성되어 있�
 현재 Kubernetes 환경에 `DataSaker`의 선행 작업이 진행되지 않으셨다면 `DataSaker` 선행 작업을 먼저 진행하여 주시기 바랍니다. [DataSaker 선행 작업](${MANUAL_KUBERNETES_KR})
 <br><br>
 
-# Postgres agent install
+# Postgres agent 설치하기
 ## 1. Postgres 설정 변경
 관제하려는 데이터베이스 `pg_stat_statements` 모듈의 활성화 된 상태인지 확인 부탁드립니다.\
 [pg_stat_statements 참조사이트](https://www.postgresql.org/docs/14/pgstatstatements.html)
