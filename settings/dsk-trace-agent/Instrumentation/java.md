@@ -6,7 +6,7 @@ Java 애플리케이션은 수동, 혹은 자동으로 instrumentation 되어질
 
 * **Java 8 이상**
 
-## Javaagent 다운로드
+## Java agent 다운로드
 
 javaagent는 [github 페이지](https://github.com/open-telemetry/opentelemetry-java-instrumentation/releases/latest)에서 다운로드할 수 있습니다.
 다음 명령어로 최신 버전을 다운로드 받을 수 있습니다.
