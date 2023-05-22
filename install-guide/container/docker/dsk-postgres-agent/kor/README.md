@@ -67,23 +67,23 @@ Postgres agent는 `postgres agent`와 `plan-postgres-agent`로 구성되어 있�
 
 에이전트를 연결하기 위해서는 수집하고자 하는 PostgreSQL 서버의 주소, 데이터베이스, 유저 ID와 패스워드를 에이전트에 설정해야 합니다.
 
-   ```shell
-    DSK_PG_USER=<user>
-    DSK_PG_SOURCE_PASS=<password>
-    DSK_PG_DB_NAME=<database>
-    DSK_PG_HOST=<host>
-    DSK_PG_PORT=<port>
-   ```
+```shell
+ DSK_PG_USER=<user>
+ DSK_PG_SOURCE_PASS=<password>
+ DSK_PG_DB_NAME=<database>
+ DSK_PG_HOST=<host>
+ DSK_PG_PORT=<port>
+```
 
 예를 들어, 주소가 `192.168.123.132`이고, 기본 포트 `5432`에 서비스중인 PostgreSQL를 수집하기 위해서는 터미널에 다음과 같이 설정할 수 있습니다.
 
-   ```shell
-    DSK_PG_USER=postgres
-    DSK_PG_SOURCE_PASS=postgres
-    DSK_PG_DB_NAME=postgres
-    DSK_PG_HOST=192.168.123.132
-    DSK_PG_PORT=5432
-   ```
+```shell
+ DSK_PG_USER=postgres
+ DSK_PG_SOURCE_PASS=postgres
+ DSK_PG_DB_NAME=postgres
+ DSK_PG_HOST=192.168.123.132
+ DSK_PG_PORT=5432
+```
 
 ### Postgres agent 설정값 등록
 
@@ -129,7 +129,7 @@ agent:
     activity_query_buffer: 50
     executor_number: 10
     plan_sender_buffer: 50
-    scrape_interval: 1s
+    scrape_interval: 5s
     scrape_timeout: 5s
     sender_number: 10
     slow_query_standard: 1s
@@ -140,31 +140,30 @@ EOF
 
 1. 데이터세이커가 사용할 로컬 디렉터리 생성합니다.
 
-   ```shell
-    sudo mkdir -p /var/datasaker
-    sudo chown -R datasaker:datasaker /var/datasaker/ 
-   ```
+```shell
+ sudo mkdir -p /var/datasaker
+ sudo chown -R datasaker:datasaker /var/datasaker/ 
+```
 
 2. 도커 명령어를 서버에 입력합니다.
 
-   ```shell
-    DSK_PG_URI=${DSK_PG_HOST}:${DSK_PG_PORT}/${DSK_PG_DB_NAME}?sslmode=disable
-    docker run -d --name dsk-postgres-agent\
-     -v /var/datasaker/:/var/datasaker/\
-     -v ~/.datasaker/config.yml:/etc/datasaker/global-config.yml:ro\
-     -v ~/.datasaker/postgres-config.yml:/etc/datasaker/dsk-postgres-agent/agent-config.yml:ro\
-     -e DKS_LOG_LEVEL=info\
-     -e DATA_SOURCE_USER=${DSK_PG_USER}\
-     -e DATA_SOURCE_PASS=${DSK_PG_SOURCE_PASS}\
-     -e DATA_SOURCE_URI=${DSK_PG_URI}\
-     --restart=always\
-     datasaker/dsk-postgres-agent
-
-     docker run -d --name dsk-plan-postgres-agent\
-       -v /var/datasaker/:/var/datasaker/\
-       -v ~/.datasaker/config.yml:/etc/datasaker/global-config.yml:ro\
-       -v ~/.datasaker/plan-postgres-config.yml:/etc/datasaker/dsk-plan-postgres-agent/agent-config.yml:ro\
-       -e DKS_LOG_LEVEL=info\
-       --restart=always\
-       datasaker/dsk-plan-postgres-agent
-   ```
+```shell
+ DSK_PG_URI=${DSK_PG_HOST}:${DSK_PG_PORT}/${DSK_PG_DB_NAME}?sslmode=disable
+ docker run -d --name dsk-postgres-agent\
+  -v /var/datasaker/:/var/datasaker/\
+  -v ~/.datasaker/config.yml:/etc/datasaker/global-config.yml:ro\
+  -v ~/.datasaker/postgres-config.yml:/etc/datasaker/dsk-postgres-agent/agent-config.yml:ro\
+  -e DKS_LOG_LEVEL=info\
+  -e DATA_SOURCE_USER=${DSK_PG_USER}\
+  -e DATA_SOURCE_PASS=${DSK_PG_SOURCE_PASS}\
+  -e DATA_SOURCE_URI=${DSK_PG_URI}\
+  --restart=always\
+  datasaker/dsk-postgres-agent
+  docker run -d --name dsk-plan-postgres-agent\
+    -v /var/datasaker/:/var/datasaker/\
+    -v ~/.datasaker/config.yml:/etc/datasaker/global-config.yml:ro\
+    -v ~/.datasaker/plan-postgres-config.yml:/etc/datasaker/dsk-plan-postgres-agent/agent-config.yml:ro\
+    -e DKS_LOG_LEVEL=info\
+    --restart=always\
+    datasaker/dsk-plan-postgres-agent
+```
