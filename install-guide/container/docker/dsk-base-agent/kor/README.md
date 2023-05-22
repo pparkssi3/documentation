@@ -14,36 +14,36 @@
 
 1. 데이터세이커가 사용할 로컬 디렉터리를 생성합니다.
 
-   ```shell
-    sudo mkdir -p /var/datasaker
-    sudo chown -R datasaker:datasaker /var/datasaker/ 
-   ```
+```shell
+   sudo mkdir -p /var/datasaker
+   sudo chown -R datasaker:datasaker /var/datasaker/ 
+```
 
 2. 도커 명령어를 서버에 입력합니다.
 
-   ```shell
-   docker run -d --name dsk-container-agent\
-      -v /var/datasaker/:/var/datasaker/\
-      -v /:/rootfs/:ro\
-      -v /var/run/:/var/run/:ro\
-      -v /sys/:/sys/:ro\
-      -v /dev/disk/:/dev/disk/:ro\
-      -v ~/datasaker/config.yml:/etc/datasaker/global-config.yml:ro\
-      -e DSK_CLUSTER_ID=${VAR_CLUSTER_ID} \
-      -e GOMAXPROCS=1\
-      -e DSK_LOG_LEVEL=DEBUG\
-      --privileged\
-      --restart=always\
-      datasaker/dsk-container-agent
-   docker run -d --name dsk-node-agent\
-      -v /var/datasaker/:/var/datasaker/\
-      -v /proc/:/host/proc/:ro\
-      -v /sys/:/host/sys/:ro\
-      -e DSK_CLUSTER_ID=${VAR_CLUSTER_ID} \
-      -e DSK_LOG_LEVEL=DEBUG\
-      --privileged\
-      --restart=always\
-      --network host\
-      --pid host\
-      datasaker/dsk-node-agent
-   ```
+```shell
+docker run -d --name dsk-container-agent\
+   -v /var/datasaker/:/var/datasaker/\
+   -v /:/rootfs/:ro\
+   -v /var/run/:/var/run/:ro\
+   -v /sys/:/sys/:ro\
+   -v /dev/disk/:/dev/disk/:ro\
+   -v ~/datasaker/config.yml:/etc/datasaker/global-config.yml:ro\
+   -e DSK_CLUSTER_ID=${VAR_CLUSTER_ID} \
+   -e GOMAXPROCS=1\
+   -e DSK_LOG_LEVEL=DEBUG\
+   --privileged\
+   --restart=always\
+   datasaker/dsk-container-agent
+docker run -d --name dsk-node-agent\
+   -v /var/datasaker/:/var/datasaker/\
+   -v /proc/:/host/proc/:ro\
+   -v /sys/:/host/sys/:ro\
+   -e DSK_CLUSTER_ID=${VAR_CLUSTER_ID} \
+   -e DSK_LOG_LEVEL=DEBUG\
+   --privileged\
+   --restart=always\
+   --network host\
+   --pid host\
+   datasaker/dsk-node-agent
+```
