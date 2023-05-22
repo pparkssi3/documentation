@@ -14,7 +14,7 @@
 에이전트를 연결하기 위해서는 수집하고자 하는 Elasticsearch 서버의 호스트, 포트 주소를 에이전트에 설정해야 합니다.
 
    ```shell
-    DSK_ES_URI==http(s)://<user>:<password>@<host>:<port>
+    DSK_ES_URI=http(s)://<user>:<password>@<host>:<port>
    ```
 
 예를 들어, localhost 9200 포트에 서비스중인 Elasticsearch를 수집하기 위해서는 다음과 같이 설정할 수 있습니다.

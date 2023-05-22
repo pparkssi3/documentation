@@ -24,7 +24,7 @@
 ```shell
 cd ~
 mkdir .datasaker
-cat << EOF >> ~/.datasaker/log-config.yml
+cat << EOF > ~/.datasaker/log-config.yml
 agent:
   metadata:
     agent_name:         # 에이전트 이름
