@@ -69,6 +69,8 @@ collect:
 
 `collect.workloads` 에는 수집하고자 하는 워크로드의 이름을 작성하면 해당 로그 파일을 수집합니다. (/var/log/containers/*WORKLOAD_NAME*.log)
 
+예를 들어, 'app-server' 라는 워크로드 이름으로 Pod가 배포되었을 때 해당 Pod의 Container로그는 Workload 이름과 함께 해쉬값이 더해진 파일명으로 생성됩니다. (app-server-5f4b7f7b4f-2q9qz.log) 해당 로그를 수집하기 위해서는 `collect.workloads` 에 'app-server' 를 작성하면 자동으로 해당 로그를 수집합니다.
+
 ## 2. 키워드(`keywords`) 설정에 유의하십시오.
 
 `keywords` 설정에 등록한 문자열이 포함된 로그만 수집합니다. 하나 이상의 `keywords`를 설정할 경우 한 개의 `keywords`라도 포함되어 있으면 로그를 수집합니다.
