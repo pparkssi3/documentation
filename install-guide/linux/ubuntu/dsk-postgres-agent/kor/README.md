@@ -61,7 +61,7 @@ agent:
         - --extend.query-path=/etc/datasaker/dsk-postgres-agent/queries.yaml
         - --data-source-user=<monitoring account name>
         - --data-source-pass=<monitoring account pass>
-        - --data-source-uri=<monitoring database uri>
+        - --data-source-uri=<monitoring database uri> # <ip>:<port>/dbname
     scrape_interval: 15s
     scrape_timeout: 5s
     scrape_configs:
