@@ -60,7 +60,7 @@ agent:
         - --extend.query-path=/etc/datasaker/dsk-postgres-agent/queries.yaml
         - --data-source-user=<monitoring account name>
         - --data-source-pass=<monitoring account pass>
-        - --data-source-uri=<monitoring database uri>
+        - --data-source-uri=<monitoring database uri> # <ip>:<port>/dbname
     scrape_interval: 15s
     scrape_timeout: 5s
     scrape_configs:
@@ -90,7 +90,7 @@ agent:
 # 관제하려는 database의 접속권한을 가진 계정 정보와 주소를 입력합니다.
 - --data-source-user=<monitoring account name>
 - --data-source-pass=<monitoring account pass>
-- --data-source-uri=<monitoring database uri>
+- --data-source-uri=<monitoring database uri> # <ip>:<port>/dbname
 ```
 
 ## 5. 패키지 실행
