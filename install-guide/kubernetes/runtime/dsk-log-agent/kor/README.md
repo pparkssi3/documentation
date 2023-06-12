@@ -53,7 +53,7 @@ helm upgrade datasaker datasaker/agent-helm -n datasaker -f ~/datasaker/config.y
 
 # Log agent 사용 방법
 
-## 1. <span style='background-color:red'>반드시 하나 이상의 로그 수집 대상 워크로드 이름(`workloads`)을 입력하십시오.</span>
+## 1. 반드시 하나 이상의 로그 수집 대상 워크로드 이름(`workloads`)을 입력하십시오.
 
 워크로드를 작성하지 않을 경우, `Log agent`가 정상적으로 동작하지 않을 수 있습니다.
 ```yaml
